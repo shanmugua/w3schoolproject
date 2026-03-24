@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Exercises — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+<style>
+.ex-score-bar { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.ex-score-bar h3 { font-size: 20px; font-weight: 700; }
+.progress-wrap { flex: 1; max-width: 300px; }
+.progress-label { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.progress-track { background: #f0f0f0; border-radius: 50px; height: 10px; overflow: hidden; }
+.progress-fill-ex { background: var(--green); height: 100%; border-radius: 50px; transition: width 0.4s; }
+.filter-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.flt { border: 1.5px solid var(--border); background: #fff; border-radius: 50px; padding: 8px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: var(--font); color: var(--text); }
+.flt:hover, .flt.active { background: var(--green); color: #fff; border-color: var(--green); }
+.ex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 20px; }
+@media (max-width: 600px) { .ex-grid { grid-template-columns: 1fr; } }
+.hint-btn { background: none; border: none; color: var(--green); font-size: 13px; cursor: pointer; font-family: var(--font); font-weight: 600; margin-top: 6px; }
+.hint-text { font-size: 13px; color: #888; margin-top: 6px; display: none; font-style: italic; }
+.ex-progress-count { font-family: var(--font-code); font-size: 28px; font-weight: 700; color: var(--green); }
+</style>
+</head>
+<body>
+<div class="topbar"><span>🔥 Complete exercises to earn your certificate!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="tutorials/html.html" class="nav-item">HTML</a><a href="tutorials/css.html" class="nav-item">CSS</a>
+      <a href="tutorials/javascript.html" class="nav-item">JavaScript</a><a href="tutorials/python.html" class="nav-item">Python</a>
+      <a href="tutorials/sql.html" class="nav-item">SQL</a>
+      <a href="references.html" class="nav-item">References</a><a href="exercises.html" class="nav-item active">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JS</a><a href="editor.html">Editor</a></div>
+</nav>
+
+<section style="background:linear-gradient(135deg,var(--dark),var(--dark2));padding:50px 24px;text-align:center">
+  <div class="container">
+    <h1 style="color:#fff;font-size:36px;font-weight:700;margin-bottom:10px">Coding Exercises 💪</h1>
+    <p style="color:#aab0bc;font-size:17px;max-width:560px;margin:0 auto">Fill in the blanks to complete the code. Each exercise tests a specific concept.</p>
+  </div>
+</section>
+
+<div class="container" style="padding:40px 24px 80px">
+  <div class="ex-score-bar">
+    <div>
+      <h3>Your Progress</h3>
+      <p style="font-size:14px;color:var(--text-muted);margin-top:4px">Complete exercises to track your learning</p>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Exercises completed</span><span><span id="doneCount">0</span>/<span id="totalCount">0</span></span></div>
+      <div class="progress-track"><div class="progress-fill-ex" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="ex-progress-count" id="scoreDisplay">0%</div>
+  </div>
+
+  <div class="filter-btns">
+    <button class="flt active" onclick="filterEx('all',this)">All</button>
+    <button class="flt" onclick="filterEx('html',this)" style="color:#e34c26;border-color:#e34c26">HTML</button>
+    <button class="flt" onclick="filterEx('css',this)" style="color:#264de4;border-color:#264de4">CSS</button>
+    <button class="flt" onclick="filterEx('js',this)" style="color:#b8970a;border-color:#f0db4f">JavaScript</button>
+    <button class="flt" onclick="filterEx('python',this)" style="color:#3572A5;border-color:#3572A5">Python</button>
+    <button class="flt" onclick="filterEx('sql',this)" style="color:#e38c00;border-color:#e38c00">SQL</button>
+  </div>
+
+  <div class="ex-grid" id="exGrid"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JavaScript</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="references.html">References</a><a href="exercises.html">Exercises</a><a href="editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="quiz.html">Quizzes</a><a href="about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+
+<script src="scripts/main.js"></script>
+<script>
+const exercises = [
+  {id:'e1',cat:'html',title:'HTML Headings',desc:'Insert the correct HTML tag to make a large heading.',code:'<___>This is a heading</___>',answer:'h1',hint:'Headings go from h1 (largest) to h6 (smallest)'},
+  {id:'e2',cat:'html',title:'HTML Paragraph',desc:'Insert the correct HTML tag to create a paragraph.',code:'<___>This is a paragraph</___>',answer:'p',hint:'Think of the letter "p" for paragraph'},
+  {id:'e3',cat:'html',title:'HTML Link',desc:'Fill in the missing attribute to make the link work.',code:`<a ___="https://example.com">Click me</a>`,answer:'href',hint:'This attribute stands for "hypertext reference"'},
+  {id:'e4',cat:'html',title:'HTML Image',desc:'Fill in the missing attribute that specifies the image path.',code:`<img ___="photo.jpg" alt="Photo">`,answer:'src',hint:'Short for "source"'},
+  {id:'e5',cat:'html',title:'HTML Button',desc:'What tag is used to create a clickable button?',code:'<___>Click Me</___>',answer:'button',hint:'Same name as the element type'},
+  {id:'e6',cat:'html',title:'HTML List Item',desc:'Fill in the tag used for each item in a list.',code:`<ul>\n  <___>Item 1</___>\n  <___>Item 2</___>\n</ul>`,answer:'li',hint:'Abbreviation for "list item"'},
+  {id:'e7',cat:'html',title:'HTML Form Input',desc:'What type attribute creates a text input box?',code:`<input type="___" name="username">`,answer:'text',hint:'Most common input type'},
+  {id:'e8',cat:'css',title:'CSS Text Color',desc:'Fill in the CSS property to change the text color.',code:`h1 {\n  ___: red;\n}`,answer:'color',hint:'Same word as the value it sets'},
+  {id:'e9',cat:'css',title:'CSS Background',desc:'Fill in the CSS property to set a background color.',code:`body {\n  ___-color: lightblue;\n}`,answer:'background',hint:'Think "background-color"'},
+  {id:'e10',cat:'css',title:'CSS Font Size',desc:'Fill in the property to set the font size.',code:`p {\n  ___: 16px;\n}`,answer:'font-size',hint:'Two words with a hyphen'},
+  {id:'e11',cat:'css',title:'CSS Flexbox',desc:'What display value enables flexbox?',code:`.container {\n  display: ___;\n}`,answer:'flex',hint:'Four letters, rhymes with "Rex"'},
+  {id:'e12',cat:'css',title:'CSS Border Radius',desc:'Fill in the property to create rounded corners.',code:`button {\n  ___: 8px;\n}`,answer:'border-radius',hint:'"border-" plus the property for circles'},
+  {id:'e13',cat:'js',title:'JS Console Log',desc:'Fill in the JavaScript function to print to the console.',code:`___.log("Hello World!");`,answer:'console',hint:'The browser debugging tool'},
+  {id:'e14',cat:'js',title:'JS Variable',desc:'Fill in the modern way to declare a variable that can be reassigned.',code:`___ name = "Alice";`,answer:'let',hint:'Short, three letters, not "var" or "const"'},
+  {id:'e15',cat:'js',title:'JS Constant',desc:'Fill in the keyword to declare a constant (non-reassignable) variable.',code:`___ PI = 3.14159;`,answer:'const',hint:'Short for "constant"'},
+  {id:'e16',cat:'js',title:'JS If Statement',desc:'Fill in the keyword to start a conditional statement.',code:`___ (x > 10) {\n  console.log("big!");\n}`,answer:'if',hint:'The most basic conditional keyword'},
+  {id:'e17',cat:'js',title:'JS Function',desc:'Fill in the keyword to declare a function.',code:`___ greet(name) {\n  return "Hello " + name;\n}`,answer:'function',hint:'Spells out the type of thing you\'re creating'},
+  {id:'e18',cat:'js',title:'JS Array Push',desc:'Fill in the method to add an item to an array.',code:`fruits.___ ("mango");`,answer:'push',hint:'You push items onto the end'},
+  {id:'e19',cat:'python',title:'Python Print',desc:'Fill in the Python function to display output.',code:`___("Hello, World!")`,answer:'print',hint:'Tells Python to print to screen'},
+  {id:'e20',cat:'python',title:'Python If',desc:'Fill in the keyword for a conditional statement in Python.',code:`___ x > 5:\n    print("big")`,answer:'if',hint:'Same as most other languages'},
+  {id:'e21',cat:'python',title:'Python Function',desc:'Fill in the keyword to define a function in Python.',code:`___ greet(name):\n    return "Hello " + name`,answer:'def',hint:'Short for "define"'},
+  {id:'e22',cat:'python',title:'Python For Loop',desc:'Fill in the keyword to start a for loop.',code:`___ fruit in fruits:\n    print(fruit)`,answer:'for',hint:'Same as most languages'},
+  {id:'e23',cat:'sql',title:'SQL Select All',desc:'Fill in the wildcard to select all columns.',code:`SELECT ___ FROM Customers;`,answer:'*',hint:'Star/asterisk symbol'},
+  {id:'e24',cat:'sql',title:'SQL Where',desc:'Fill in the clause to filter SQL results.',code:`SELECT * FROM Customers\n___ Country = 'Germany';`,answer:'WHERE',hint:'Used to filter based on a condition'},
+  {id:'e25',cat:'sql',title:'SQL Order By',desc:'Fill in the keyword to sort SQL results.',code:`SELECT * FROM Customers\n___ BY City ASC;`,answer:'ORDER',hint:'"ORDER BY" — what order do you want?'},
+  {id:'e26',cat:'sql',title:'SQL Insert',desc:'Fill in the SQL keyword to add a new record.',code:`___ INTO Customers (Name, City)\nVALUES ('Alice', 'NYC');`,answer:'INSERT',hint:'You insert data into a table'},
+];
+
+let completed = new Set(JSON.parse(localStorage.getItem('w3learn_ex') || '[]'));
+let currentFilter = 'all';
+
+function filterEx(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.flt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderExercises();
+}
+
+function renderExercises() {
+  const grid = document.getElementById('exGrid');
+  const filtered = currentFilter === 'all' ? exercises : exercises.filter(e => e.cat === currentFilter);
+  document.getElementById('totalCount').textContent = filtered.length;
+  const doneFiltered = filtered.filter(e => completed.has(e.id)).length;
+  document.getElementById('doneCount').textContent = doneFiltered;
+  const pct = filtered.length ? Math.round(doneFiltered / filtered.length * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('scoreDisplay').textContent = pct + '%';
+
+  const catColors = { html: '#e34c26', css: '#264de4', js: '#b8970a', python: '#3572A5', sql: '#e38c00' };
+  const catLabels = { html: 'HTML', css: 'CSS', js: 'JavaScript', python: 'Python', sql: 'SQL' };
+
+  grid.innerHTML = filtered.map(ex => `
+    <div class="exercise-card ${completed.has(ex.id) ? 'done' : ''}" id="card-${ex.id}" style="${completed.has(ex.id) ? 'border-color:var(--green);background:#f0fff8' : ''}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="background:${catColors[ex.cat]}22;color:${catColors[ex.cat]};font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px">${catLabels[ex.cat]}</span>
+        ${completed.has(ex.id) ? '<span style="color:var(--green);font-weight:700;font-size:13px;margin-left:auto">✓ Completed</span>' : ''}
+      </div>
+      <div class="ex-title">${ex.title}</div>
+      <div class="ex-desc">${ex.desc}</div>
+      <div class="ex-code">${ex.code}</div>
+      <input class="ex-input" id="inp-${ex.id}" placeholder="Type your answer..." ${completed.has(ex.id) ? 'value="' + ex.answer + '" disabled' : ''}/>
+      <br/>
+      <button class="ex-btn" onclick="checkEx('${ex.id}','${ex.answer}')">Submit Answer</button>
+      <button class="hint-btn" onclick="showHint('${ex.id}')">💡 Show Hint</button>
+      <div class="hint-text" id="hint-${ex.id}">${ex.hint}</div>
+      <div class="ex-feedback" id="fb-${ex.id}"></div>
+    </div>
+  `).join('');
+}
+
+function checkEx(id, answer) {
+  const input = document.getElementById('inp-' + id);
+  const fb = document.getElementById('fb-' + id);
+  const card = document.getElementById('card-' + id);
+  const val = input.value.trim().toLowerCase();
+  if (val === answer.toLowerCase()) {
+    input.className = 'ex-input correct';
+    fb.textContent = '✓ Correct! Well done!';
+    fb.className = 'ex-feedback ok';
+    card.style.borderColor = 'var(--green)';
+    card.style.background = '#f0fff8';
+    completed.add(id);
+    localStorage.setItem('w3learn_ex', JSON.stringify([...completed]));
+    updateProgress();
+  } else {
+    input.className = 'ex-input wrong';
+    fb.textContent = `✗ Not quite. Try again! (Hint: ${answer[0]}...)`;
+    fb.className = 'ex-feedback err';
+  }
+}
+
+function showHint(id) {
+  const hint = document.getElementById('hint-' + id);
+  hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+}
+
+function updateProgress() {
+  const filtered = currentFilter === 'all' ? exercises : exercises.filter(e => e.cat === currentFilter);
+  const doneFiltered = filtered.filter(e => completed.has(e.id)).length;
+  document.getElementById('doneCount').textContent = doneFiltered;
+  const pct = filtered.length ? Math.round(doneFiltered / filtered.length * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('scoreDisplay').textContent = pct + '%';
+}
+
+renderExercises();
+</script>
+</body>
+</html>

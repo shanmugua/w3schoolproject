@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Code Editor — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+<style>
+body { overflow: hidden; }
+.editor-page { display: flex; flex-direction: column; height: 100vh; }
+.editor-nav { background: var(--dark); display: flex; align-items: center; padding: 0 16px; height: 52px; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+.editor-nav .logo { display: flex; align-items: center; gap: 6px; margin-right: 12px; text-decoration: none; }
+.editor-title { color: #888; font-size: 14px; }
+.editor-main { display: flex; flex: 1; overflow: hidden; }
+.code-panels { display: flex; flex: 1; flex-direction: column; border-right: 2px solid rgba(255,255,255,0.1); min-width: 0; }
+.tabs-row { display: flex; background: #2a2a3e; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.tab { padding: 10px 20px; font-size: 13px; color: #888; cursor: pointer; font-family: var(--font-code); border-bottom: 2px solid transparent; transition: all 0.15s; }
+.tab.active { color: #fff; border-bottom-color: var(--green); }
+.tab:hover:not(.active) { color: #ccc; background: rgba(255,255,255,0.05); }
+.panel { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+.panel.active { display: flex; }
+.panel-header { background: #252535; padding: 6px 16px; font-size: 11px; color: #888; font-family: var(--font-code); display: flex; align-items: center; justify-content: space-between; }
+.panel-header .lang-badge { color: var(--green); font-weight: 600; }
+.code-area { flex: 1; background: var(--code-bg); color: #cdd6f4; border: none; outline: none; padding: 20px; font-family: var(--font-code); font-size: 14px; line-height: 1.8; resize: none; tab-size: 2; overflow: auto; }
+.preview-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; background: #fff; }
+.preview-header { background: #2a2a3e; padding: 8px 16px; font-size: 12px; color: #888; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; }
+.preview-header span { font-family: var(--font-code); }
+#preview-frame { flex: 1; border: none; background: #fff; }
+.toolbar { background: #1e1e2e; padding: 8px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.08); }
+.run-btn { background: var(--green); color: #fff; border: none; padding: 8px 24px; border-radius: 5px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; font-family: var(--font); }
+.run-btn:hover { background: var(--green-dark); }
+.reset-btn { background: rgba(255,255,255,0.08); color: #ccc; border: none; padding: 8px 16px; border-radius: 5px; font-size: 13px; cursor: pointer; font-family: var(--font); transition: background 0.15s; }
+.reset-btn:hover { background: rgba(255,255,255,0.15); }
+.font-controls { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.font-btn { background: rgba(255,255,255,0.08); border: none; color: #ccc; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.font-btn:hover { background: rgba(255,255,255,0.18); }
+.font-size-label { color: #888; font-size: 12px; min-width: 30px; text-align: center; }
+.split-btn { background: rgba(255,255,255,0.08); border: none; color: #ccc; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: var(--font); }
+.split-btn:hover { background: rgba(255,255,255,0.18); }
+.split-btn.active { background: var(--green); color: #fff; }
+@media (max-width: 700px) {
+  .editor-main { flex-direction: column; }
+  .code-panels { border-right: none; border-bottom: 2px solid rgba(255,255,255,0.1); max-height: 50vh; }
+  .preview-panel { max-height: 50vh; }
+}
+</style>
+</head>
+<body>
+<div class="editor-page">
+  <!-- EDITOR NAV -->
+  <div class="editor-nav">
+    <a href="index.html" class="logo">
+      <span class="logo-w">W3</span><span class="logo-learn">Learn</span>
+    </a>
+    <span class="editor-title">Code Editor</span>
+    <div style="margin-left:auto;display:flex;gap:8px">
+      <a href="tutorials/html.html" style="color:#aaa;font-size:13px;padding:6px 12px;background:rgba(255,255,255,0.07);border-radius:4px">HTML Docs</a>
+      <a href="tutorials/css.html" style="color:#aaa;font-size:13px;padding:6px 12px;background:rgba(255,255,255,0.07);border-radius:4px">CSS Docs</a>
+      <a href="tutorials/javascript.html" style="color:#aaa;font-size:13px;padding:6px 12px;background:rgba(255,255,255,0.07);border-radius:4px">JS Docs</a>
+    </div>
+  </div>
+
+  <div class="editor-main">
+    <!-- CODE PANELS -->
+    <div class="code-panels" id="codePanels">
+      <div class="tabs-row">
+        <div class="tab active" onclick="switchTab('html')">HTML</div>
+        <div class="tab" onclick="switchTab('css')">CSS</div>
+        <div class="tab" onclick="switchTab('js')">JavaScript</div>
+      </div>
+
+      <div class="panel active" id="panel-html">
+        <div class="panel-header"><span class="lang-badge">HTML</span><span>index.html</span></div>
+        <textarea class="code-area" id="editor-html" spellcheck="false" onkeydown="handleTab(event)"></textarea>
+      </div>
+      <div class="panel" id="panel-css">
+        <div class="panel-header"><span class="lang-badge">CSS</span><span>style.css</span></div>
+        <textarea class="code-area" id="editor-css" spellcheck="false" onkeydown="handleTab(event)"></textarea>
+      </div>
+      <div class="panel" id="panel-js">
+        <div class="panel-header"><span class="lang-badge">JS</span><span>script.js</span></div>
+        <textarea class="code-area" id="editor-js" spellcheck="false" onkeydown="handleTab(event)"></textarea>
+      </div>
+
+      <div class="toolbar">
+        <button class="run-btn" onclick="runEditor()">▶ Run</button>
+        <button class="reset-btn" onclick="resetEditor()">↺ Reset</button>
+        <span style="color:#888;font-size:12px">Auto-run: <input type="checkbox" id="autorun" onchange="toggleAutoRun()" style="margin-left:4px"/></span>
+        <div class="font-controls">
+          <button class="font-btn" onclick="changeFontSize(-1)">A−</button>
+          <span class="font-size-label" id="fontSizeLabel">14</span>
+          <button class="font-btn" onclick="changeFontSize(1)">A+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW PANEL -->
+    <div class="preview-panel">
+      <div class="preview-header">
+        <span>🌐 Output Preview</span>
+        <button class="split-btn" onclick="fullscreenPreview()">⛶ Fullscreen</button>
+      </div>
+      <iframe id="preview-frame"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS = {
+  html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="title">Hello, World! 🌍</h1>
+    <p>Edit the code and click <strong>Run</strong> to see results!</p>
+
+    <button onclick="changeColor()">Change Color</button>
+
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+  </div>
+
+  <script src="script.js"><\/script>
+</body>
+</html>`,
+  css: `* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  max-width: 480px;
+  width: 90%;
+}
+
+h1 {
+  font-size: 32px;
+  color: #04AA6D;
+  margin-bottom: 12px;
+}
+
+p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+button {
+  background: #04AA6D;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #028a57;
+}
+
+ul {
+  padding-left: 20px;
+  color: #444;
+}
+
+li {
+  margin-bottom: 6px;
+  font-size: 15px;
+}`,
+  js: `const colors = ['#04AA6D', '#e74c3c', '#3498db', '#f39c12', '#9b59b6'];
+let colorIndex = 0;
+
+function changeColor() {
+  colorIndex = (colorIndex + 1) % colors.length;
+  document.getElementById('title').style.color = colors[colorIndex];
+}
+
+// Auto greeting
+const hour = new Date().getHours();
+const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+document.getElementById('title').textContent = greeting + ', World! 🌍';
+
+console.log('W3Learn Editor loaded!');`
+};
+
+let autoRunEnabled = false;
+let fontSize = 14;
+let autoRunTimer;
+
+// Initialize
+document.getElementById('editor-html').value = DEFAULTS.html;
+document.getElementById('editor-css').value = DEFAULTS.css;
+document.getElementById('editor-js').value = DEFAULTS.js;
+runEditor();
+
+function switchTab(lang) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', ['html', 'css', 'js'][i] === lang);
+  });
+  ['html', 'css', 'js'].forEach(l => {
+    document.getElementById('panel-' + l).classList.toggle('active', l === lang);
+  });
+}
+
+function runEditor() {
+  const html = document.getElementById('editor-html').value;
+  const css = document.getElementById('editor-css').value;
+  const js = document.getElementById('editor-js').value;
+  const frame = document.getElementById('preview-frame');
+  const doc = frame.contentDocument || frame.contentWindow.document;
+  const combined = html
+    .replace('</head>', `<style>${css}</style></head>`)
+    .replace('</body>', `<script>${js}<\/script></body>`);
+  doc.open();
+  doc.write(combined);
+  doc.close();
+}
+
+function resetEditor() {
+  if (confirm('Reset all code to defaults?')) {
+    document.getElementById('editor-html').value = DEFAULTS.html;
+    document.getElementById('editor-css').value = DEFAULTS.css;
+    document.getElementById('editor-js').value = DEFAULTS.js;
+    runEditor();
+  }
+}
+
+function toggleAutoRun() {
+  autoRunEnabled = document.getElementById('autorun').checked;
+  if (autoRunEnabled) {
+    ['editor-html', 'editor-css', 'editor-js'].forEach(id => {
+      document.getElementById(id).addEventListener('input', scheduleAutoRun);
+    });
+  }
+}
+
+function scheduleAutoRun() {
+  clearTimeout(autoRunTimer);
+  autoRunTimer = setTimeout(runEditor, 800);
+}
+
+function changeFontSize(delta) {
+  fontSize = Math.max(10, Math.min(22, fontSize + delta));
+  document.getElementById('fontSizeLabel').textContent = fontSize;
+  document.querySelectorAll('.code-area').forEach(el => el.style.fontSize = fontSize + 'px');
+}
+
+function handleTab(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const ta = e.target;
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    ta.value = ta.value.slice(0, start) + '  ' + ta.value.slice(end);
+    ta.selectionStart = ta.selectionEnd = start + 2;
+  }
+  if (e.key === 'Enter') {
+    // Basic auto-indent
+    const ta = e.target;
+    const start = ta.selectionStart;
+    const lineStart = ta.value.lastIndexOf('\n', start - 1) + 1;
+    const line = ta.value.slice(lineStart, start);
+    const indent = line.match(/^(\s*)/)[1];
+    const prevChar = ta.value[start - 1];
+    if (['{', '(', '[', '>'].includes(prevChar)) {
+      e.preventDefault();
+      const extra = '  ';
+      ta.value = ta.value.slice(0, start) + '\n' + indent + extra + ta.value.slice(start);
+      ta.selectionStart = ta.selectionEnd = start + 1 + indent.length + extra.length;
+    }
+  }
+}
+
+function fullscreenPreview() {
+  const frame = document.getElementById('preview-frame');
+  if (frame.requestFullscreen) frame.requestFullscreen();
+  else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+}
+
+// Load template from URL param if present
+const params = new URLSearchParams(window.location.search);
+const tmpl = params.get('code');
+if (tmpl === 'html-intro') {
+  document.getElementById('editor-html').value = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>My First Heading</h1>
+  <p>My first paragraph.</p>
+
+</body>
+</html>`;
+  document.getElementById('editor-css').value = `body { font-family: Arial; padding: 20px; }
+h1 { color: #04AA6D; }
+p { color: #333; font-size: 18px; }`;
+  document.getElementById('editor-js').value = '';
+  runEditor();
+}
+</script>
+</body>
+</html>

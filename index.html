@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>W3Learn — Web Development Tutorials</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>🔥 New: CSS Grid Tutorial added!</span>
+  <a href="tutorials/css.html">Learn CSS →</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-w">W3</span><span class="logo-learn">Learn</span>
+    </a>
+    <div class="nav-links">
+      <a href="tutorials/html.html" class="nav-item">HTML</a>
+      <a href="tutorials/css.html" class="nav-item">CSS</a>
+      <a href="tutorials/javascript.html" class="nav-item">JavaScript</a>
+      <a href="tutorials/python.html" class="nav-item">Python</a>
+      <a href="tutorials/sql.html" class="nav-item">SQL</a>
+      <a href="references.html" class="nav-item">References</a>
+      <a href="exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <input type="text" placeholder="Search tutorials..." id="searchInput" onkeyup="handleSearch(event)"/>
+        <span class="search-icon">🔍</span>
+      </div>
+      <a href="editor.html" class="btn-tryit">Try it Yourself »</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="tutorials/html.html">HTML</a>
+    <a href="tutorials/css.html">CSS</a>
+    <a href="tutorials/javascript.html">JavaScript</a>
+    <a href="tutorials/python.html">Python</a>
+    <a href="tutorials/sql.html">SQL</a>
+    <a href="editor.html">Try Editor</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Learn Web Development<br/><span class="hero-accent">Step by Step</span></h1>
+    <p class="hero-sub">The world's largest web developer learning platform. Free tutorials, references and exercises in HTML, CSS, JavaScript, Python, SQL, and more.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">500M+</span><span class="stat-label">learners/year</span></div>
+      <div class="stat"><span class="stat-num">12K+</span><span class="stat-label">exercises</span></div>
+      <div class="stat"><span class="stat-num">40+</span><span class="stat-label">languages</span></div>
+    </div>
+    <div class="hero-btns">
+      <a href="tutorials/html.html" class="btn-primary">Start Learning HTML →</a>
+      <a href="editor.html" class="btn-secondary">Open Code Editor</a>
+    </div>
+  </div>
+  <div class="hero-code">
+    <div class="code-window">
+      <div class="window-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="window-title">index.html</span>
+      </div>
+      <pre class="code-preview"><code id="typewriter"></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- TUTORIALS GRID -->
+<section class="section tutorials-section">
+  <div class="container">
+    <h2 class="section-title">Popular Tutorials</h2>
+    <p class="section-sub">Start with the basics and work your way up</p>
+    <div class="tutorials-grid">
+
+      <a href="tutorials/html.html" class="tut-card tut-html">
+        <div class="tut-icon">🌐</div>
+        <div class="tut-info">
+          <h3>HTML</h3>
+          <p>The language for building web pages</p>
+          <div class="tut-meta"><span class="badge beginner">Beginner</span><span class="lessons">85 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/css.html" class="tut-card tut-css">
+        <div class="tut-icon">🎨</div>
+        <div class="tut-info">
+          <h3>CSS</h3>
+          <p>The language for styling web pages</p>
+          <div class="tut-meta"><span class="badge beginner">Beginner</span><span class="lessons">90 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/javascript.html" class="tut-card tut-js">
+        <div class="tut-icon">⚡</div>
+        <div class="tut-info">
+          <h3>JavaScript</h3>
+          <p>The language for web programming</p>
+          <div class="tut-meta"><span class="badge intermediate">Intermediate</span><span class="lessons">130 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/python.html" class="tut-card tut-python">
+        <div class="tut-icon">🐍</div>
+        <div class="tut-info">
+          <h3>Python</h3>
+          <p>A popular general-purpose language</p>
+          <div class="tut-meta"><span class="badge beginner">Beginner</span><span class="lessons">110 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/sql.html" class="tut-card tut-sql">
+        <div class="tut-icon">🗄️</div>
+        <div class="tut-info">
+          <h3>SQL</h3>
+          <p>Database query language</p>
+          <div class="tut-meta"><span class="badge intermediate">Intermediate</span><span class="lessons">75 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/react.html" class="tut-card tut-react">
+        <div class="tut-icon">⚛️</div>
+        <div class="tut-info">
+          <h3>React</h3>
+          <p>A JavaScript library for building UIs</p>
+          <div class="tut-meta"><span class="badge advanced">Advanced</span><span class="lessons">95 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/nodejs.html" class="tut-card tut-node">
+        <div class="tut-icon">🟢</div>
+        <div class="tut-info">
+          <h3>Node.js</h3>
+          <p>JavaScript runtime for the server</p>
+          <div class="tut-meta"><span class="badge advanced">Advanced</span><span class="lessons">60 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+      <a href="tutorials/git.html" class="tut-card tut-git">
+        <div class="tut-icon">🔀</div>
+        <div class="tut-info">
+          <h3>Git</h3>
+          <p>Version control for developers</p>
+          <div class="tut-meta"><span class="badge beginner">Beginner</span><span class="lessons">45 lessons</span></div>
+        </div>
+        <div class="tut-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CODE EDITOR BANNER -->
+<section class="editor-banner">
+  <div class="container">
+    <div class="banner-inner">
+      <div class="banner-text">
+        <h2>Try Our Online Code Editor</h2>
+        <p>Write, run and see the results of your code instantly. No installation needed.</p>
+        <a href="editor.html" class="btn-primary">Open Editor →</a>
+      </div>
+      <div class="banner-demo">
+        <div class="mini-editor">
+          <div class="mini-tabs"><span class="mini-tab active">HTML</span><span class="mini-tab">CSS</span><span class="mini-tab">JS</span></div>
+          <div class="mini-code">
+            <span class="kw">&lt;h1</span> <span class="at">style</span>=<span class="str">"color:green"</span><span class="kw">&gt;</span>Hello World!<span class="kw">&lt;/h1&gt;</span>
+          </div>
+          <div class="mini-result">Hello <span style="color:#04AA6D;font-weight:700">World!</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES SECTION -->
+<section class="section ref-section">
+  <div class="container">
+    <h2 class="section-title">References</h2>
+    <p class="section-sub">Complete reference guides for quick lookup</p>
+    <div class="ref-grid">
+      <a href="references.html#html-tags" class="ref-card">
+        <span class="ref-icon">🏷️</span>
+        <h4>HTML Tags</h4>
+        <p>Complete tag reference</p>
+      </a>
+      <a href="references.html#css-props" class="ref-card">
+        <span class="ref-icon">✨</span>
+        <h4>CSS Properties</h4>
+        <p>All CSS properties</p>
+      </a>
+      <a href="references.html#js-methods" class="ref-card">
+        <span class="ref-icon">⚙️</span>
+        <h4>JS Methods</h4>
+        <p>Built-in JS methods</p>
+      </a>
+      <a href="references.html#colors" class="ref-card">
+        <span class="ref-icon">🎨</span>
+        <h4>Color Picker</h4>
+        <p>HTML color reference</p>
+      </a>
+      <a href="references.html#http" class="ref-card">
+        <span class="ref-icon">🌐</span>
+        <h4>HTTP Status</h4>
+        <p>HTTP status codes</p>
+      </a>
+      <a href="references.html#regex" class="ref-card">
+        <span class="ref-icon">🔎</span>
+        <h4>RegEx</h4>
+        <p>Regular expressions</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISES CTA -->
+<section class="section exercises-cta">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-text">
+        <h2>Test Your Knowledge</h2>
+        <p>Complete exercises after each lesson to reinforce what you've learned. Track your progress and earn certificates.</p>
+        <div class="cta-btns">
+          <a href="exercises.html" class="btn-primary">Start Exercises</a>
+          <a href="quiz.html" class="btn-outline">Take a Quiz</a>
+        </div>
+      </div>
+      <div class="cta-badges">
+        <div class="badge-card">🏅 HTML Certified</div>
+        <div class="badge-card">🥇 CSS Master</div>
+        <div class="badge-card">⚡ JS Pro</div>
+        <div class="badge-card">🐍 Python Dev</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-w">W3</span><span class="logo-learn">Learn</span>
+        <p>The world's most popular learning platform for web development.</p>
+        <div class="social-links">
+          <a href="#">𝕏</a><a href="#">in</a><a href="#">📘</a><a href="#">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Tutorials</h5>
+        <a href="tutorials/html.html">HTML</a>
+        <a href="tutorials/css.html">CSS</a>
+        <a href="tutorials/javascript.html">JavaScript</a>
+        <a href="tutorials/python.html">Python</a>
+        <a href="tutorials/sql.html">SQL</a>
+        <a href="tutorials/react.html">React</a>
+      </div>
+      <div class="footer-col">
+        <h5>References</h5>
+        <a href="references.html#html-tags">HTML Tags</a>
+        <a href="references.html#css-props">CSS Properties</a>
+        <a href="references.html#js-methods">JS Methods</a>
+        <a href="references.html#colors">Colors</a>
+        <a href="references.html#http">HTTP Codes</a>
+      </div>
+      <div class="footer-col">
+        <h5>Learn More</h5>
+        <a href="exercises.html">Exercises</a>
+        <a href="quiz.html">Quizzes</a>
+        <a href="editor.html">Code Editor</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 W3Learn. Built for learning purposes. Inspired by W3Schools.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SEARCH DROPDOWN -->
+<div class="search-results" id="searchResults"></div>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quiz — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+<style>
+.quiz-wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+.quiz-header { text-align: center; margin-bottom: 36px; }
+.quiz-header h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+.quiz-header p { color: var(--text-muted); font-size: 16px; }
+.cat-select { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 32px; }
+.cat-btn { border: 2px solid var(--border); background: #fff; border-radius: 50px; padding: 9px 22px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.15s; font-family: var(--font); }
+.cat-btn.active, .cat-btn:hover { background: var(--green); color: #fff; border-color: var(--green); }
+.quiz-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: var(--shadow); }
+.quiz-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.q-counter { font-size: 13px; font-weight: 700; color: var(--text-muted); }
+.q-score { background: var(--green-light); color: var(--green); font-size: 14px; font-weight: 700; padding: 4px 14px; border-radius: 50px; }
+.q-progress { background: #f0f0f0; border-radius: 50px; height: 6px; margin-bottom: 24px; overflow: hidden; }
+.q-progress-fill { height: 100%; background: var(--green); border-radius: 50px; transition: width 0.4s; }
+.q-text { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 24px; line-height: 1.5; }
+.q-code { font-family: var(--font-code); background: var(--code-bg); color: #cdd6f4; padding: 14px 18px; border-radius: 8px; font-size: 13px; margin-bottom: 20px; line-height: 1.7; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { background: #fff; border: 2px solid var(--border); border-radius: 10px; padding: 14px 18px; text-align: left; font-size: 15px; font-family: var(--font); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 12px; }
+.opt-btn:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); }
+.opt-btn.selected { border-color: #3498db; background: #eaf4fd; }
+.opt-btn.correct { border-color: var(--green); background: var(--green-light); font-weight: 700; }
+.opt-btn.wrong { border-color: #e74c3c; background: #fdeaea; font-weight: 700; }
+.opt-label { width: 28px; height: 28px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; transition: all 0.15s; }
+.opt-btn.correct .opt-label { background: var(--green); color: #fff; }
+.opt-btn.wrong .opt-label { background: #e74c3c; color: #fff; }
+.q-feedback { margin-top: 16px; padding: 14px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; display: none; }
+.q-feedback.show { display: block; }
+.q-feedback.correct-fb { background: var(--green-light); color: var(--green); border-left: 4px solid var(--green); }
+.q-feedback.wrong-fb { background: #fdeaea; color: #c0392b; border-left: 4px solid #e74c3c; }
+.quiz-actions { display: flex; justify-content: flex-end; margin-top: 24px; }
+.next-q-btn { background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: var(--font); transition: background 0.15s; display: none; }
+.next-q-btn:hover { background: var(--green-dark); }
+.result-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 48px 32px; text-align: center; display: none; }
+.result-emoji { font-size: 72px; margin-bottom: 16px; }
+.result-title { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+.result-score { font-size: 20px; color: var(--text-muted); margin-bottom: 24px; }
+.result-grade { font-size: 56px; font-weight: 700; color: var(--green); margin-bottom: 24px; }
+.result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.restart-q { background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: var(--font); }
+.share-q { background: #fff; color: var(--text); border: 2px solid var(--border); border-radius: 8px; padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: var(--font); }
+</style>
+</head>
+<body>
+<div class="topbar"><span>🧠 Test your knowledge with our quizzes!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="tutorials/html.html" class="nav-item">HTML</a><a href="tutorials/css.html" class="nav-item">CSS</a>
+      <a href="tutorials/javascript.html" class="nav-item">JavaScript</a><a href="tutorials/python.html" class="nav-item">Python</a>
+      <a href="tutorials/sql.html" class="nav-item">SQL</a>
+      <a href="references.html" class="nav-item">References</a><a href="exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JS</a><a href="editor.html">Editor</a></div>
+</nav>
+
+<div class="quiz-wrap">
+  <div class="quiz-header">
+    <h1>🧠 Web Dev Quiz</h1>
+    <p>Test your knowledge across HTML, CSS, JavaScript, and more. 10 questions per round.</p>
+  </div>
+
+  <div class="cat-select">
+    <button class="cat-btn active" onclick="startQuiz('all',this)">All Topics</button>
+    <button class="cat-btn" onclick="startQuiz('html',this)">HTML</button>
+    <button class="cat-btn" onclick="startQuiz('css',this)">CSS</button>
+    <button class="cat-btn" onclick="startQuiz('js',this)">JavaScript</button>
+    <button class="cat-btn" onclick="startQuiz('python',this)">Python</button>
+  </div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-meta">
+      <span class="q-counter" id="qCounter">Question 1 of 10</span>
+      <span class="q-score" id="qScore">Score: 0</span>
+    </div>
+    <div class="q-progress"><div class="q-progress-fill" id="qProgress" style="width:10%"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-code" id="qCode" style="display:none"></div>
+    <div class="options" id="options"></div>
+    <div class="q-feedback" id="qFeedback"></div>
+    <div class="quiz-actions">
+      <button class="next-q-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="result-emoji" id="rEmoji"></div>
+    <div class="result-title" id="rTitle"></div>
+    <div class="result-grade" id="rGrade"></div>
+    <div class="result-score" id="rScore"></div>
+    <div class="result-actions">
+      <button class="restart-q" onclick="location.reload()">🔄 Play Again</button>
+      <a href="exercises.html" class="share-q" style="text-decoration:none;display:inline-block">✏️ Try Exercises</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JavaScript</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="references.html">References</a><a href="exercises.html">Exercises</a><a href="editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="quiz.html">Quizzes</a><a href="about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+
+<script src="scripts/main.js"></script>
+<script>
+const allQuestions = [
+  { cat:'html', q:'What does HTML stand for?', opts:['Hyper Text Markup Language','High Tech Modern Language','Home Tool Markup Language','Hyperlink Text Management Language'], a:0, exp:'HTML stands for Hyper Text Markup Language — the standard language for creating web pages.' },
+  { cat:'html', q:'Which HTML tag is used to define an internal stylesheet?', opts:['<css>','<script>','<style>','<link>'], a:2, exp:'The <style> tag is used to embed CSS directly within an HTML document.' },
+  { cat:'html', q:'Which HTML attribute specifies an alternate text for an image?', opts:['title','src','alt','longdesc'], a:2, exp:'The "alt" attribute provides alternative text if the image cannot be displayed.' },
+  { cat:'html', q:'What is the correct HTML element for the largest heading?', opts:['<h6>','<heading>','<h1>','<head>'], a:2, exp:'<h1> is the largest heading in HTML. Headings go from h1 (largest) to h6 (smallest).' },
+  { cat:'html', q:'Which element is used to create an ordered list?', opts:['<ul>','<list>','<ol>','<dl>'], a:2, exp:'<ol> creates an ordered (numbered) list. <ul> creates an unordered (bulleted) list.' },
+  { cat:'html', q:'What does the <br> tag do?', code:'<p>Hello<br>World</p>', opts:['Bold text','Line break','New paragraph','Horizontal rule'], a:1, exp:'<br> inserts a line break — it\'s an empty element with no closing tag.' },
+  { cat:'css', q:'Which CSS property changes the text color?', opts:['font-color','text-color','color','foreground-color'], a:2, exp:'The "color" property in CSS is used to set the text color of an element.' },
+  { cat:'css', q:'Which property is used to change the background color?', opts:['bgcolor','background-color','color','background'], a:1, exp:'"background-color" sets the background color. "background" is a shorthand for all background properties.' },
+  { cat:'css', q:'How do you make text bold in CSS?', opts:['font-style: bold','text-weight: bold','font-weight: bold','font: bold'], a:2, exp:'"font-weight: bold" makes text bold. Valid values include: normal, bold, 100-900.' },
+  { cat:'css', q:'Which CSS value centers text horizontally?', code:'p { text-align: ___; }', opts:['middle','justify','right','center'], a:3, exp:'"text-align: center" horizontally centers text within its container.' },
+  { cat:'css', q:'What does "display: flex" enable?', opts:['CSS animations','Flexbox layout','CSS Grid','Float layout'], a:1, exp:'Setting display to flex enables the Flexbox layout model on a container element.' },
+  { cat:'css', q:'Which unit is relative to the font-size of the root element?', opts:['em','px','rem','vh'], a:2, exp:'"rem" stands for "root em" — it\'s relative to the font-size of the <html> element.' },
+  { cat:'js', q:'Which keyword declares a block-scoped variable that can be reassigned?', opts:['var','let','const','def'], a:1, exp:'"let" declares a block-scoped variable that can be reassigned. "const" cannot be reassigned. "var" is function-scoped.' },
+  { cat:'js', q:'What does "===" check in JavaScript?', opts:['Value only','Type only','Value and type','Neither'], a:2, exp:'"===" is the strict equality operator — it checks both value AND type. "==" only checks value.' },
+  { cat:'js', q:'Which method adds an element to the end of an array?', opts:['push()','pop()','shift()','append()'], a:0, exp:'"push()" adds one or more elements to the end of an array and returns the new length.' },
+  { cat:'js', q:'What is the output of typeof null?', code:'console.log(typeof null);', opts:['"null"','"undefined"','"object"','"boolean"'], a:2, exp:'"typeof null" returns "object" — this is a well-known bug in JavaScript that has been kept for backward compatibility.' },
+  { cat:'js', q:'Which method is used to select an element by ID?', opts:['querySelector()','getElementByClass()','getElementById()','findById()'], a:2, exp:'"document.getElementById()" selects an element by its unique id attribute.' },
+  { cat:'js', q:'What does "async/await" do in JavaScript?', opts:['Creates animations','Handles asynchronous code','Defines classes','Imports modules'], a:1, exp:'"async/await" is syntactic sugar over Promises — it lets you write asynchronous code that reads like synchronous code.' },
+  { cat:'python', q:'How do you start a comment in Python?', opts:['//','/*','#','--'], a:2, exp:'In Python, comments start with the "#" character. Everything after # on that line is ignored.' },
+  { cat:'python', q:'Which keyword is used to define a function in Python?', opts:['function','fun','def','fn'], a:2, exp:'"def" is the keyword used to define functions in Python: def function_name(params):' },
+  { cat:'python', q:'What is the correct way to create a list in Python?', opts:['list = (1,2,3)','list = [1,2,3]','list = {1,2,3}','list = <1,2,3>'], a:1, exp:'Lists in Python use square brackets: [1, 2, 3]. Parentheses create tuples. Curly braces create sets/dicts.' },
+  { cat:'python', q:'What does "len([1,2,3,4])" return?', opts:['3','4','5','Error'], a:1, exp:'"len()" returns the number of items in a sequence. [1,2,3,4] has 4 items, so len() returns 4.' },
+];
+
+const QUIZ_LENGTH = 10;
+let questions = [], current = 0, score = 0, answered = false, currentCat = 'all';
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+function startQuiz(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  current = 0; score = 0; answered = false;
+  const pool = cat === 'all' ? allQuestions : allQuestions.filter(q => q.cat === cat);
+  questions = shuffle(pool).slice(0, QUIZ_LENGTH);
+  document.getElementById('quizCard').style.display = 'block';
+  document.getElementById('resultCard').style.display = 'none';
+  loadQuestion();
+}
+
+function loadQuestion() {
+  answered = false;
+  const q = questions[current];
+  document.getElementById('qCounter').textContent = `Question ${current + 1} of ${questions.length}`;
+  document.getElementById('qScore').textContent = `Score: ${score}`;
+  document.getElementById('qProgress').style.width = ((current + 1) / questions.length * 100) + '%';
+  document.getElementById('qText').textContent = q.q;
+  const codeEl = document.getElementById('qCode');
+  if (q.code) { codeEl.textContent = q.code; codeEl.style.display = 'block'; }
+  else codeEl.style.display = 'none';
+  document.getElementById('qFeedback').className = 'q-feedback';
+  document.getElementById('qFeedback').textContent = '';
+  document.getElementById('nextBtn').style.display = 'none';
+
+  const labels = ['A', 'B', 'C', 'D'];
+  const optionsEl = document.getElementById('options');
+  optionsEl.innerHTML = q.opts.map((opt, i) => `
+    <button class="opt-btn" onclick="selectAnswer(${i})" id="opt${i}">
+      <span class="opt-label">${labels[i]}</span>
+      <span>${opt}</span>
+    </button>
+  `).join('');
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const isCorrect = idx === q.a;
+  if (isCorrect) score++;
+
+  document.querySelectorAll('.opt-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.a) btn.classList.add('correct');
+    else if (i === idx && !isCorrect) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('qFeedback');
+  fb.textContent = (isCorrect ? '✅ Correct! ' : '❌ Wrong. ') + q.exp;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('nextBtn').style.display = 'block';
+  document.getElementById('qScore').textContent = `Score: ${score}`;
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) { showResult(); return; }
+  loadQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizCard').style.display = 'none';
+  const card = document.getElementById('resultCard');
+  card.style.display = 'block';
+  const pct = Math.round(score / questions.length * 100);
+  const grades = [
+    { min:90, emoji:'🏆', title:'Outstanding!', grade:'A+' },
+    { min:80, emoji:'🥇', title:'Excellent!', grade:'A' },
+    { min:70, emoji:'🎉', title:'Great Job!', grade:'B' },
+    { min:60, emoji:'😊', title:'Good Effort!', grade:'C' },
+    { min:0,  emoji:'💪', title:'Keep Practicing!', grade:'D' },
+  ];
+  const g = grades.find(gr => pct >= gr.min);
+  document.getElementById('rEmoji').textContent = g.emoji;
+  document.getElementById('rTitle').textContent = g.title;
+  document.getElementById('rGrade').textContent = g.grade;
+  document.getElementById('rScore').textContent = `You scored ${score} out of ${questions.length} (${pct}%)`;
+}
+
+// Start with all questions
+startQuiz('all', document.querySelector('.cat-btn.active'));
+</script>
+</body>
+</html>

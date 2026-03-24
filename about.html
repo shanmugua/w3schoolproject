@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ℹ️</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+<style>
+.about-hero { background: linear-gradient(135deg, var(--dark), #0f3460); padding: 80px 24px; text-align: center; }
+.about-hero h1 { color: #fff; font-size: 48px; font-weight: 700; margin-bottom: 14px; }
+.about-hero p { color: #aab0bc; font-size: 18px; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+.about-section { padding: 60px 24px; }
+.about-section:nth-child(even) { background: var(--bg2); }
+.about-content { max-width: 800px; margin: 0 auto; }
+.about-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; color: var(--green); }
+.about-content p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 16px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin-top: 32px; }
+.stat-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; }
+.stat-card .num { font-size: 36px; font-weight: 700; color: var(--green); display: block; }
+.stat-card .lbl { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 24px; }
+.feature-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 24px; }
+.feature-card .icon { font-size: 32px; margin-bottom: 12px; }
+.feature-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="tutorials/html.html" class="nav-item">HTML</a><a href="tutorials/css.html" class="nav-item">CSS</a>
+      <a href="tutorials/javascript.html" class="nav-item">JavaScript</a><a href="tutorials/python.html" class="nav-item">Python</a>
+      <a href="tutorials/sql.html" class="nav-item">SQL</a>
+      <a href="references.html" class="nav-item">References</a><a href="exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JS</a><a href="editor.html">Editor</a></div>
+</nav>
+
+<div class="about-hero">
+  <h1>About <span style="color:var(--green)">W3Learn</span></h1>
+  <p>A full-featured web development learning platform — built to help developers of all levels master the web.</p>
+</div>
+
+<div class="about-section">
+  <div class="about-content">
+    <h2>Our Mission</h2>
+    <p>W3Learn is dedicated to making web development education accessible to everyone. Whether you're a complete beginner or an experienced developer brushing up on new technologies, W3Learn provides clear, concise, and interactive tutorials.</p>
+    <p>Every tutorial includes live examples you can edit right in the browser, exercises to test your knowledge, and comprehensive reference guides you can return to again and again.</p>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="num">8+</span><span class="lbl">Languages & Frameworks</span></div>
+      <div class="stat-card"><span class="num">500+</span><span class="lbl">Tutorial Chapters</span></div>
+      <div class="stat-card"><span class="num">26</span><span class="lbl">Interactive Exercises</span></div>
+      <div class="stat-card"><span class="num">100%</span><span class="lbl">Free Forever</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-content">
+    <h2>What We Offer</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📚</div>
+        <h4>Step-by-Step Tutorials</h4>
+        <p>Beginner-friendly lessons that build on each other. Learn HTML, CSS, JS, Python, SQL, React, Node.js, and Git.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💻</div>
+        <h4>Live Code Editor</h4>
+        <p>Write and run HTML, CSS, and JavaScript directly in your browser with instant preview. No setup required.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✏️</div>
+        <h4>Interactive Exercises</h4>
+        <p>Fill-in-the-blank exercises for every topic. Track your progress with localStorage-based progress saving.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧠</div>
+        <h4>Knowledge Quizzes</h4>
+        <p>Multi-choice quizzes with explanations for every answer. Filter by topic and track your score.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📖</div>
+        <h4>Complete References</h4>
+        <p>Searchable reference tables for HTML tags, CSS properties, HTTP status codes, and JavaScript methods.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔍</div>
+        <h4>Smart Search</h4>
+        <p>Quickly find any tutorial, topic, or reference across the entire platform with the built-in search.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about-section" style="text-align:center">
+  <div class="about-content" style="text-align:center">
+    <h2>Start Learning Today</h2>
+    <p>Everything is free. No account required. Just pick a tutorial and start coding.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+      <a href="tutorials/html.html" class="btn-primary">Start with HTML →</a>
+      <a href="editor.html" class="btn-outline">Open Code Editor</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JavaScript</a><a href="tutorials/python.html">Python</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="references.html">References</a><a href="exercises.html">Exercises</a><a href="editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="quiz.html">Quizzes</a><a href="about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Built for learning. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="scripts/main.js"></script>
+</body>
+</html>

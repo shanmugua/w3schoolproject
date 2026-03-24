@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>References — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 New: CSS Grid Tutorial added!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="tutorials/html.html" class="nav-item">HTML</a><a href="tutorials/css.html" class="nav-item">CSS</a>
+      <a href="tutorials/javascript.html" class="nav-item">JavaScript</a><a href="tutorials/python.html" class="nav-item">Python</a>
+      <a href="tutorials/sql.html" class="nav-item">SQL</a>
+      <a href="references.html" class="nav-item active">References</a><a href="exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box"><input type="text" placeholder="Search references..." id="refSearch" onkeyup="filterRef(this.value)"/><span class="search-icon">🔍</span></div>
+      <a href="editor.html" class="btn-tryit">Try it Yourself »</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JS</a><a href="editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">HTML Reference</div>
+    <a href="#html-tags" class="sidebar-link">HTML Tags</a>
+    <a href="#html-attributes" class="sidebar-link">Global Attributes</a>
+    <a href="#html-events" class="sidebar-link">Event Attributes</a>
+    <div class="sidebar-title">CSS Reference</div>
+    <a href="#css-props" class="sidebar-link">CSS Properties</a>
+    <a href="#css-selectors" class="sidebar-link">CSS Selectors</a>
+    <a href="#colors" class="sidebar-link">Color Names</a>
+    <div class="sidebar-title">Other References</div>
+    <a href="#http" class="sidebar-link">HTTP Status Codes</a>
+    <a href="#js-methods" class="sidebar-link">JS Array Methods</a>
+    <a href="#regex" class="sidebar-link">RegEx Reference</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1>Web Development References</h1>
+    <p>Complete reference guides for HTML, CSS, JavaScript, and more.</p>
+    <input type="text" class="ref-search" placeholder="🔍 Search references..." onkeyup="filterRef(this.value)" id="refSearchMain"/>
+
+    <!-- HTML TAGS -->
+    <div class="tag-section" id="html-tags">
+      <h3>HTML Tags</h3>
+      <table class="ref-table" id="htmlTagsTable">
+        <thead><tr><th>Tag</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;!--...--&gt;</code></td><td>Defines a comment</td></tr>
+          <tr><td><code>&lt;!DOCTYPE&gt;</code></td><td>Defines the document type</td></tr>
+          <tr><td><code>&lt;a&gt;</code></td><td>Defines a hyperlink</td></tr>
+          <tr><td><code>&lt;abbr&gt;</code></td><td>Defines an abbreviation or acronym</td></tr>
+          <tr><td><code>&lt;article&gt;</code></td><td>Defines independent self-contained content</td></tr>
+          <tr><td><code>&lt;aside&gt;</code></td><td>Defines content aside from the page content</td></tr>
+          <tr><td><code>&lt;audio&gt;</code></td><td>Defines embedded sound content</td></tr>
+          <tr><td><code>&lt;b&gt;</code></td><td>Defines bold text</td></tr>
+          <tr><td><code>&lt;blockquote&gt;</code></td><td>Defines a section quoted from another source</td></tr>
+          <tr><td><code>&lt;body&gt;</code></td><td>Defines the document's body</td></tr>
+          <tr><td><code>&lt;br&gt;</code></td><td>Defines a single line break</td></tr>
+          <tr><td><code>&lt;button&gt;</code></td><td>Defines a clickable button</td></tr>
+          <tr><td><code>&lt;canvas&gt;</code></td><td>Used to draw graphics via JavaScript</td></tr>
+          <tr><td><code>&lt;code&gt;</code></td><td>Defines a piece of computer code</td></tr>
+          <tr><td><code>&lt;div&gt;</code></td><td>Defines a section in a document (block)</td></tr>
+          <tr><td><code>&lt;em&gt;</code></td><td>Defines emphasized text</td></tr>
+          <tr><td><code>&lt;footer&gt;</code></td><td>Defines a footer for a document or section</td></tr>
+          <tr><td><code>&lt;form&gt;</code></td><td>Defines an HTML form for user input</td></tr>
+          <tr><td><code>&lt;h1&gt; to &lt;h6&gt;</code></td><td>Defines HTML headings</td></tr>
+          <tr><td><code>&lt;head&gt;</code></td><td>Contains metadata/information for the document</td></tr>
+          <tr><td><code>&lt;header&gt;</code></td><td>Defines a header for a document or section</td></tr>
+          <tr><td><code>&lt;hr&gt;</code></td><td>Defines a thematic change in content</td></tr>
+          <tr><td><code>&lt;html&gt;</code></td><td>Defines the root of an HTML document</td></tr>
+          <tr><td><code>&lt;i&gt;</code></td><td>Defines a part of text in alternate voice</td></tr>
+          <tr><td><code>&lt;iframe&gt;</code></td><td>Defines an inline frame</td></tr>
+          <tr><td><code>&lt;img&gt;</code></td><td>Defines an image</td></tr>
+          <tr><td><code>&lt;input&gt;</code></td><td>Defines an input control</td></tr>
+          <tr><td><code>&lt;label&gt;</code></td><td>Defines a label for an input element</td></tr>
+          <tr><td><code>&lt;li&gt;</code></td><td>Defines a list item</td></tr>
+          <tr><td><code>&lt;link&gt;</code></td><td>Defines the relationship between a document and an external resource</td></tr>
+          <tr><td><code>&lt;main&gt;</code></td><td>Specifies the main content of a document</td></tr>
+          <tr><td><code>&lt;meta&gt;</code></td><td>Defines metadata about an HTML document</td></tr>
+          <tr><td><code>&lt;nav&gt;</code></td><td>Defines navigation links</td></tr>
+          <tr><td><code>&lt;ol&gt;</code></td><td>Defines an ordered list</td></tr>
+          <tr><td><code>&lt;p&gt;</code></td><td>Defines a paragraph</td></tr>
+          <tr><td><code>&lt;script&gt;</code></td><td>Defines a client-side script</td></tr>
+          <tr><td><code>&lt;section&gt;</code></td><td>Defines a section in a document</td></tr>
+          <tr><td><code>&lt;select&gt;</code></td><td>Defines a drop-down list</td></tr>
+          <tr><td><code>&lt;span&gt;</code></td><td>Defines a section in a document (inline)</td></tr>
+          <tr><td><code>&lt;strong&gt;</code></td><td>Defines important text</td></tr>
+          <tr><td><code>&lt;style&gt;</code></td><td>Defines style information for a document</td></tr>
+          <tr><td><code>&lt;table&gt;</code></td><td>Defines a table</td></tr>
+          <tr><td><code>&lt;td&gt;</code></td><td>Defines a cell in a table</td></tr>
+          <tr><td><code>&lt;textarea&gt;</code></td><td>Defines a multi-line input control</td></tr>
+          <tr><td><code>&lt;th&gt;</code></td><td>Defines a header cell in a table</td></tr>
+          <tr><td><code>&lt;title&gt;</code></td><td>Defines a title for the document</td></tr>
+          <tr><td><code>&lt;tr&gt;</code></td><td>Defines a row in a table</td></tr>
+          <tr><td><code>&lt;ul&gt;</code></td><td>Defines an unordered list</td></tr>
+          <tr><td><code>&lt;video&gt;</code></td><td>Defines embedded video content</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CSS PROPERTIES -->
+    <div class="tag-section" id="css-props">
+      <h3>CSS Properties</h3>
+      <table class="ref-table">
+        <thead><tr><th>Property</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>background</code></td><td>Sets all background properties in one declaration</td></tr>
+          <tr><td><code>background-color</code></td><td>Sets the background color of an element</td></tr>
+          <tr><td><code>border</code></td><td>Sets all border properties in one declaration</td></tr>
+          <tr><td><code>border-radius</code></td><td>Defines the radius of the element's corners</td></tr>
+          <tr><td><code>box-shadow</code></td><td>Attaches one or more shadows to an element</td></tr>
+          <tr><td><code>color</code></td><td>Sets the color of text</td></tr>
+          <tr><td><code>cursor</code></td><td>Specifies the mouse cursor displayed when pointing</td></tr>
+          <tr><td><code>display</code></td><td>Specifies how an element should be displayed</td></tr>
+          <tr><td><code>flex</code></td><td>A shorthand property for flex-grow, flex-shrink, and flex-basis</td></tr>
+          <tr><td><code>font</code></td><td>A shorthand for various font properties</td></tr>
+          <tr><td><code>font-size</code></td><td>Specifies the font size of text</td></tr>
+          <tr><td><code>font-weight</code></td><td>Specifies the weight of a font</td></tr>
+          <tr><td><code>gap</code></td><td>Sets the gap between flex/grid items</td></tr>
+          <tr><td><code>grid-template-columns</code></td><td>Specifies the column sizes of a grid layout</td></tr>
+          <tr><td><code>height</code></td><td>Sets the height of an element</td></tr>
+          <tr><td><code>justify-content</code></td><td>Aligns flex/grid items on the main axis</td></tr>
+          <tr><td><code>margin</code></td><td>Sets all margin properties in one declaration</td></tr>
+          <tr><td><code>max-width</code></td><td>Sets the maximum width of an element</td></tr>
+          <tr><td><code>opacity</code></td><td>Sets the opacity level for an element</td></tr>
+          <tr><td><code>overflow</code></td><td>Specifies what happens if content overflows an element</td></tr>
+          <tr><td><code>padding</code></td><td>Sets all padding properties in one declaration</td></tr>
+          <tr><td><code>position</code></td><td>Specifies the type of positioning method used</td></tr>
+          <tr><td><code>text-align</code></td><td>Specifies the horizontal alignment of text</td></tr>
+          <tr><td><code>transform</code></td><td>Applies a 2D or 3D transformation to an element</td></tr>
+          <tr><td><code>transition</code></td><td>A shorthand property for transition properties</td></tr>
+          <tr><td><code>width</code></td><td>Sets the width of an element</td></tr>
+          <tr><td><code>z-index</code></td><td>Sets the stack order of an element</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- HTTP STATUS CODES -->
+    <div class="tag-section" id="http">
+      <h3>HTTP Status Codes</h3>
+      <table class="ref-table">
+        <thead><tr><th>Code</th><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>200</code></td><td>OK</td><td>The request succeeded</td></tr>
+          <tr><td><code>201</code></td><td>Created</td><td>The request was fulfilled and a new resource was created</td></tr>
+          <tr><td><code>204</code></td><td>No Content</td><td>The server processed the request successfully, no content returned</td></tr>
+          <tr><td><code>301</code></td><td>Moved Permanently</td><td>The URL has been permanently moved</td></tr>
+          <tr><td><code>302</code></td><td>Found</td><td>Temporary redirect</td></tr>
+          <tr><td><code>304</code></td><td>Not Modified</td><td>Cached version is valid</td></tr>
+          <tr><td><code>400</code></td><td>Bad Request</td><td>The server cannot process the request</td></tr>
+          <tr><td><code>401</code></td><td>Unauthorized</td><td>Authentication is required</td></tr>
+          <tr><td><code>403</code></td><td>Forbidden</td><td>The server refuses the action</td></tr>
+          <tr><td><code>404</code></td><td>Not Found</td><td>The resource was not found</td></tr>
+          <tr><td><code>405</code></td><td>Method Not Allowed</td><td>HTTP method not supported for this endpoint</td></tr>
+          <tr><td><code>409</code></td><td>Conflict</td><td>A conflict with the current state of the resource</td></tr>
+          <tr><td><code>422</code></td><td>Unprocessable Entity</td><td>The request was well-formed but semantic errors</td></tr>
+          <tr><td><code>429</code></td><td>Too Many Requests</td><td>Rate limit exceeded</td></tr>
+          <tr><td><code>500</code></td><td>Internal Server Error</td><td>The server encountered an unexpected condition</td></tr>
+          <tr><td><code>502</code></td><td>Bad Gateway</td><td>Invalid response from an upstream server</td></tr>
+          <tr><td><code>503</code></td><td>Service Unavailable</td><td>The server is temporarily unavailable</td></tr>
+          <tr><td><code>504</code></td><td>Gateway Timeout</td><td>The upstream server timed out</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JS ARRAY METHODS -->
+    <div class="tag-section" id="js-methods">
+      <h3>JavaScript Array Methods</h3>
+      <table class="ref-table">
+        <thead><tr><th>Method</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>concat()</code></td><td>Joins two or more arrays</td></tr>
+          <tr><td><code>every()</code></td><td>Checks if every element passes a test</td></tr>
+          <tr><td><code>filter()</code></td><td>Creates a new array with elements passing a test</td></tr>
+          <tr><td><code>find()</code></td><td>Returns the first element passing a test</td></tr>
+          <tr><td><code>findIndex()</code></td><td>Returns the index of the first match</td></tr>
+          <tr><td><code>flat()</code></td><td>Creates a new array with sub-arrays flattened</td></tr>
+          <tr><td><code>forEach()</code></td><td>Calls a function for each element</td></tr>
+          <tr><td><code>includes()</code></td><td>Checks if an array contains an element</td></tr>
+          <tr><td><code>indexOf()</code></td><td>Returns the first index of an element</td></tr>
+          <tr><td><code>join()</code></td><td>Joins all elements into a string</td></tr>
+          <tr><td><code>map()</code></td><td>Creates a new array by calling a function on each element</td></tr>
+          <tr><td><code>pop()</code></td><td>Removes and returns the last element</td></tr>
+          <tr><td><code>push()</code></td><td>Adds elements to the end of an array</td></tr>
+          <tr><td><code>reduce()</code></td><td>Reduces the array to a single value</td></tr>
+          <tr><td><code>reverse()</code></td><td>Reverses the order of elements</td></tr>
+          <tr><td><code>shift()</code></td><td>Removes and returns the first element</td></tr>
+          <tr><td><code>slice()</code></td><td>Returns selected elements in a new array</td></tr>
+          <tr><td><code>some()</code></td><td>Checks if any element passes a test</td></tr>
+          <tr><td><code>sort()</code></td><td>Sorts the elements of an array</td></tr>
+          <tr><td><code>splice()</code></td><td>Adds/removes elements from an array</td></tr>
+          <tr><td><code>unshift()</code></td><td>Adds elements to the beginning of an array</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="tutorials/html.html">HTML</a><a href="tutorials/css.html">CSS</a><a href="tutorials/javascript.html">JavaScript</a><a href="tutorials/python.html">Python</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="references.html">References</a><a href="exercises.html">Exercises</a><a href="editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="quiz.html">Quizzes</a><a href="about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+
+<script src="scripts/main.js"></script>
+<script>
+function filterRef(val) {
+  const v = val.trim().toLowerCase();
+  document.querySelectorAll('.ref-table tbody tr').forEach(row => {
+    row.style.display = (!v || row.textContent.toLowerCase().includes(v)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
