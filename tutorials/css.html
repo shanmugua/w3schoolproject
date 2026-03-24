@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CSS Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 New: CSS Grid Tutorial added!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item">HTML</a>
+      <a href="css.html" class="nav-item active">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a>
+      <a href="python.html" class="nav-item">Python</a>
+      <a href="sql.html" class="nav-item">SQL</a>
+      <a href="../references.html" class="nav-item">References</a>
+      <a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="../editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JS</a><a href="../editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">CSS Tutorial</div>
+    <a href="#intro" class="sidebar-link active">CSS Introduction</a>
+    <a href="#syntax" class="sidebar-link">CSS Syntax</a>
+    <a href="#selectors" class="sidebar-link">CSS Selectors</a>
+    <a href="#colors" class="sidebar-link">CSS Colors</a>
+    <a href="#box-model" class="sidebar-link">CSS Box Model</a>
+    <a href="#display" class="sidebar-link">CSS Display</a>
+    <a href="#position" class="sidebar-link">CSS Position</a>
+    <a href="#flexbox" class="sidebar-link">CSS Flexbox</a>
+    <a href="#grid" class="sidebar-link">CSS Grid</a>
+    <a href="#animations" class="sidebar-link">CSS Animations</a>
+    <a href="#responsive" class="sidebar-link">CSS Responsive</a>
+    <div class="sidebar-title">More Tutorials</div>
+    <a href="html.html" class="sidebar-link">HTML Tutorial</a>
+    <a href="javascript.html" class="sidebar-link">JavaScript Tutorial</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1 id="intro">CSS Tutorial</h1>
+    <p>CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed.</p>
+
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">CSS</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">body</span> {
+  <span class="hl-attr">background-color</span>: <span class="hl-val">lightblue</span>;
+}
+
+<span class="hl-tag">h1</span> {
+  <span class="hl-attr">color</span>: <span class="hl-val">white</span>;
+  <span class="hl-attr">text-align</span>: <span class="hl-val">center</span>;
+}
+
+<span class="hl-tag">p</span> {
+  <span class="hl-attr">font-family</span>: <span class="hl-val">verdana</span>;
+  <span class="hl-attr">font-size</span>: <span class="hl-val">20px</span>;
+}</code></pre>
+      </div>
+      <div class="example-result" style="background:lightblue;padding:16px;border-radius:4px">
+        <h1 style="color:white;text-align:center;font-size:22px">My Heading</h1>
+        <p style="font-family:verdana;font-size:16px">My paragraph.</p>
+      </div>
+    </div>
+
+    <h2 id="syntax">CSS Syntax</h2>
+    <p>A CSS rule consists of a selector and a declaration block:</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">CSS Syntax</span></div>
+      <pre><code><span class="hl-tag">selector</span> {
+  <span class="hl-attr">property</span>: <span class="hl-val">value</span>;
+  <span class="hl-attr">property</span>: <span class="hl-val">value</span>;
+}</code></pre>
+    </div>
+    <p>The selector points to the HTML element you want to style. The declaration block contains one or more declarations separated by semicolons.</p>
+
+    <h2 id="selectors">CSS Selectors</h2>
+    <p>CSS selectors are used to "find" (or select) the HTML elements you want to style.</p>
+    <table>
+      <tr><th>Selector</th><th>Example</th><th>Description</th></tr>
+      <tr><td><code>.class</code></td><td><code>.intro</code></td><td>Selects all elements with class="intro"</td></tr>
+      <tr><td><code>#id</code></td><td><code>#firstname</code></td><td>Selects the element with id="firstname"</td></tr>
+      <tr><td><code>*</code></td><td><code>*</code></td><td>Selects all elements</td></tr>
+      <tr><td><code>element</code></td><td><code>p</code></td><td>Selects all &lt;p&gt; elements</td></tr>
+      <tr><td><code>el,el</code></td><td><code>div, p</code></td><td>Selects all &lt;div&gt; and &lt;p&gt; elements</td></tr>
+    </table>
+
+    <h2 id="colors">CSS Colors</h2>
+    <p>Colors in CSS can be specified by using predefined color names, or RGB, HEX, HSL values.</p>
+    <div class="example-box">
+      <div class="example-label">CSS Color Examples</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">CSS</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">h1</span> { <span class="hl-attr">color</span>: <span class="hl-val">Tomato</span>; }
+<span class="hl-tag">h2</span> { <span class="hl-attr">color</span>: <span class="hl-val">#04AA6D</span>; }
+<span class="hl-tag">h3</span> { <span class="hl-attr">color</span>: <span class="hl-val">rgb(60, 179, 113)</span>; }
+<span class="hl-tag">h4</span> { <span class="hl-attr">color</span>: <span class="hl-val">hsl(300, 76%, 72%)</span>; }</code></pre>
+      </div>
+      <div class="example-result">
+        <p style="color:Tomato;font-weight:700;font-size:16px">Tomato</p>
+        <p style="color:#04AA6D;font-weight:700;font-size:16px">#04AA6D</p>
+        <p style="color:rgb(60,179,113);font-weight:700;font-size:16px">rgb(60, 179, 113)</p>
+      </div>
+    </div>
+
+    <h2 id="box-model">CSS Box Model</h2>
+    <p>In CSS, the term "box model" is used when talking about design and layout. All HTML elements can be considered as boxes. The CSS box model is essentially a box that wraps around every HTML element.</p>
+    <ul>
+      <li><strong>Content</strong> - The content of the box, where text and images appear</li>
+      <li><strong>Padding</strong> - Clears an area around the content</li>
+      <li><strong>Border</strong> - A border that goes around the padding and content</li>
+      <li><strong>Margin</strong> - Clears an area outside the border</li>
+    </ul>
+    <div class="example-box">
+      <div class="example-label">Box Model Demo</div>
+      <div style="background:#f0f0f0;padding:24px;text-align:center;font-size:13px;font-weight:700;color:#555;border-radius:4px">
+        <div style="background:#ff9800;padding:16px;color:#fff">MARGIN</div>
+        <div style="background:#2196f3;padding:12px;margin:8px;color:#fff">BORDER</div>
+        <div style="background:#4caf50;padding:10px;margin:8px;color:#fff">PADDING</div>
+        <div style="background:#fff;padding:8px;margin:8px;border:1px solid #ccc">CONTENT</div>
+      </div>
+    </div>
+
+    <h2 id="flexbox">CSS Flexbox</h2>
+    <p>The Flexible Box Layout module, usually referred to as flexbox, is a one-dimensional layout model. Before flexbox, CSS had four layout modes: block, inline, table, and positioned.</p>
+    <div class="example-box">
+      <div class="example-label">Flexbox Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">CSS</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">.container</span> {
+  <span class="hl-attr">display</span>: <span class="hl-val">flex</span>;
+  <span class="hl-attr">justify-content</span>: <span class="hl-val">space-between</span>;
+  <span class="hl-attr">align-items</span>: <span class="hl-val">center</span>;
+  <span class="hl-attr">gap</span>: <span class="hl-val">16px</span>;
+}</code></pre>
+      </div>
+      <div class="example-result">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f8f8f8;padding:12px;border-radius:4px">
+          <div style="background:#04AA6D;color:#fff;padding:12px 20px;border-radius:4px;font-weight:700">Box 1</div>
+          <div style="background:#04AA6D;color:#fff;padding:12px 20px;border-radius:4px;font-weight:700">Box 2</div>
+          <div style="background:#04AA6D;color:#fff;padding:12px 20px;border-radius:4px;font-weight:700">Box 3</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="grid">CSS Grid</h2>
+    <p>The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.</p>
+    <div class="example-box">
+      <div class="example-label">Grid Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">CSS</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">.grid</span> {
+  <span class="hl-attr">display</span>: <span class="hl-val">grid</span>;
+  <span class="hl-attr">grid-template-columns</span>: <span class="hl-val">repeat(3, 1fr)</span>;
+  <span class="hl-attr">gap</span>: <span class="hl-val">10px</span>;
+}</code></pre>
+      </div>
+      <div class="example-result">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">1</div>
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">2</div>
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">3</div>
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">4</div>
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">5</div>
+          <div style="background:#1a1a2e;color:#04AA6D;padding:16px;text-align:center;border-radius:4px;font-weight:700">6</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="animations">CSS Animations</h2>
+    <p>CSS animations make it possible to animate transitions from one CSS style configuration to another.</p>
+    <div class="example-box">
+      <div class="example-label">Animation Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">CSS</span></div>
+        <pre><code><span class="hl-tag">@keyframes</span> <span class="hl-val">slide</span> {
+  <span class="hl-val">0%</span>   { <span class="hl-attr">transform</span>: <span class="hl-val">translateX(0)</span>; }
+  <span class="hl-val">100%</span> { <span class="hl-attr">transform</span>: <span class="hl-val">translateX(200px)</span>; }
+}
+<span class="hl-tag">.box</span> {
+  <span class="hl-attr">animation</span>: <span class="hl-val">slide 2s infinite alternate</span>;
+}</code></pre>
+      </div>
+      <div class="example-result" style="overflow:hidden;height:60px;position:relative">
+        <div style="width:50px;height:50px;background:#04AA6D;border-radius:6px;animation:slide2 2s infinite alternate;position:absolute"></div>
+        <style>@keyframes slide2{0%{transform:translateX(0)}100%{transform:translateX(200px)}}</style>
+      </div>
+    </div>
+
+    <div class="tut-nav-btns">
+      <a href="html.html" class="tut-nav-btn prev">« HTML Tutorial</a>
+      <a href="javascript.html" class="tut-nav-btn">JavaScript Tutorial »</a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Built for learning. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

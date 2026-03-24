@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Node.js Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 New: Express.js section added!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item">HTML</a><a href="css.html" class="nav-item">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a><a href="python.html" class="nav-item">Python</a>
+      <a href="sql.html" class="nav-item">SQL</a>
+      <a href="../references.html" class="nav-item">References</a><a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="../editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JS</a><a href="../editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Node.js Tutorial</div>
+    <a href="#intro" class="sidebar-link active">Node.js Introduction</a>
+    <a href="#getstarted" class="sidebar-link">Get Started</a>
+    <a href="#modules" class="sidebar-link">Node.js Modules</a>
+    <a href="#http" class="sidebar-link">HTTP Module</a>
+    <a href="#fs" class="sidebar-link">File System</a>
+    <a href="#npm" class="sidebar-link">NPM</a>
+    <a href="#express" class="sidebar-link">Express.js</a>
+    <a href="#restapi" class="sidebar-link">REST API</a>
+    <a href="#events" class="sidebar-link">Events</a>
+    <div class="sidebar-title">Related</div>
+    <a href="javascript.html" class="sidebar-link">JavaScript</a>
+    <a href="react.html" class="sidebar-link">React</a>
+    <a href="sql.html" class="sidebar-link">SQL</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1 id="intro">Node.js Tutorial</h1>
+    <p>Node.js is an open-source, cross-platform JavaScript runtime environment. Node.js runs the V8 JavaScript engine — the core of Google Chrome — outside of the browser. This allows Node.js to be very performant.</p>
+
+    <div class="tip-box">
+      <strong>✅ What is Node.js used for?</strong> Web servers, REST APIs, real-time apps, CLI tools, microservices, and more.
+    </div>
+
+    <h2 id="getstarted">Get Started</h2>
+    <p>After installing Node.js, create a file called <code>app.js</code> and add the following code:</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">app.js</span></div>
+      <pre><code><span class="hl-fn">console</span>.<span class="hl-fn">log</span>(<span class="hl-str">"Hello, Node.js!"</span>);</code></pre>
+    </div>
+    <p>Then run it from the terminal:</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code>node app.js</code></pre>
+    </div>
+
+    <h2 id="modules">Node.js Modules</h2>
+    <p>Node.js uses a module system. You can create your own modules or use built-in and third-party ones.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">math.js — Creating a module</span></div>
+      <pre><code><span class="hl-kw">const</span> add = (a, b) => a + b;
+<span class="hl-kw">const</span> multiply = (a, b) => a * b;
+
+<span class="hl-fn">module</span>.exports = { add, multiply };</code></pre>
+    </div>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">app.js — Using the module</span></div>
+      <pre><code><span class="hl-kw">const</span> { add, multiply } = <span class="hl-fn">require</span>(<span class="hl-str">"./math"</span>);
+
+<span class="hl-fn">console</span>.<span class="hl-fn">log</span>(<span class="hl-fn">add</span>(<span class="hl-num">2</span>, <span class="hl-num">3</span>));       <span class="hl-cm">// 5</span>
+<span class="hl-fn">console</span>.<span class="hl-fn">log</span>(<span class="hl-fn">multiply</span>(<span class="hl-num">4</span>, <span class="hl-num">5</span>)); <span class="hl-cm">// 20</span></code></pre>
+    </div>
+
+    <h2 id="http">HTTP Module</h2>
+    <p>Node.js has a built-in module called <code>http</code> that allows Node.js to transfer data over the HTTP protocol.</p>
+    <div class="example-box">
+      <div class="example-label">Creating a Web Server</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">server.js</span></div>
+        <pre><code><span class="hl-kw">const</span> http = <span class="hl-fn">require</span>(<span class="hl-str">"http"</span>);
+
+<span class="hl-kw">const</span> server = http.<span class="hl-fn">createServer</span>((req, res) => {
+  res.<span class="hl-fn">writeHead</span>(<span class="hl-num">200</span>, { <span class="hl-str">"Content-Type"</span>: <span class="hl-str">"text/html"</span> });
+  res.<span class="hl-fn">end</span>(<span class="hl-str">"&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;"</span>);
+});
+
+server.<span class="hl-fn">listen</span>(<span class="hl-num">3000</span>, () => {
+  <span class="hl-fn">console</span>.<span class="hl-fn">log</span>(<span class="hl-str">"Server running at http://localhost:3000"</span>);
+});</code></pre>
+      </div>
+    </div>
+
+    <h2 id="npm">NPM — Node Package Manager</h2>
+    <p>NPM is the world's largest software registry. Open-source developers use npm to share software. npm is installed automatically with Node.js.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal — Common NPM Commands</span></div>
+      <pre><code><span class="hl-cm"># Initialize a project</span>
+npm init -y
+
+<span class="hl-cm"># Install a package</span>
+npm install express
+
+<span class="hl-cm"># Install dev dependency</span>
+npm install nodemon --save-dev
+
+<span class="hl-cm"># Run a script</span>
+npm run start
+
+<span class="hl-cm"># List installed packages</span>
+npm list</code></pre>
+    </div>
+
+    <h2 id="express">Express.js</h2>
+    <p>Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+    <div class="example-box">
+      <div class="example-label">Express REST API Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">server.js</span></div>
+        <pre><code><span class="hl-kw">const</span> express = <span class="hl-fn">require</span>(<span class="hl-str">"express"</span>);
+<span class="hl-kw">const</span> app = <span class="hl-fn">express</span>();
+
+app.<span class="hl-fn">use</span>(express.<span class="hl-fn">json</span>()); <span class="hl-cm">// parse JSON bodies</span>
+
+<span class="hl-kw">const</span> users = [
+  { id: <span class="hl-num">1</span>, name: <span class="hl-str">"Alice"</span> },
+  { id: <span class="hl-num">2</span>, name: <span class="hl-str">"Bob"</span> }
+];
+
+<span class="hl-cm">// GET all users</span>
+app.<span class="hl-fn">get</span>(<span class="hl-str">"/api/users"</span>, (req, res) => {
+  res.<span class="hl-fn">json</span>(users);
+});
+
+<span class="hl-cm">// GET user by ID</span>
+app.<span class="hl-fn">get</span>(<span class="hl-str">"/api/users/:id"</span>, (req, res) => {
+  <span class="hl-kw">const</span> user = users.<span class="hl-fn">find</span>(u => u.id === +req.params.id);
+  <span class="hl-kw">if</span> (!user) <span class="hl-kw">return</span> res.<span class="hl-fn">status</span>(<span class="hl-num">404</span>).<span class="hl-fn">json</span>({ error: <span class="hl-str">"Not found"</span> });
+  res.<span class="hl-fn">json</span>(user);
+});
+
+<span class="hl-cm">// POST create user</span>
+app.<span class="hl-fn">post</span>(<span class="hl-str">"/api/users"</span>, (req, res) => {
+  <span class="hl-kw">const</span> newUser = { id: users.length + <span class="hl-num">1</span>, ...req.body };
+  users.<span class="hl-fn">push</span>(newUser);
+  res.<span class="hl-fn">status</span>(<span class="hl-num">201</span>).<span class="hl-fn">json</span>(newUser);
+});
+
+app.<span class="hl-fn">listen</span>(<span class="hl-num">3000</span>, () => <span class="hl-fn">console</span>.<span class="hl-fn">log</span>(<span class="hl-str">"Server on port 3000"</span>));</code></pre>
+      </div>
+    </div>
+
+    <h2 id="restapi">REST API Methods</h2>
+    <table>
+      <tr><th>HTTP Method</th><th>CRUD</th><th>Description</th></tr>
+      <tr><td><code>GET</code></td><td>Read</td><td>Retrieve data from the server</td></tr>
+      <tr><td><code>POST</code></td><td>Create</td><td>Send new data to the server</td></tr>
+      <tr><td><code>PUT</code></td><td>Update</td><td>Replace existing data</td></tr>
+      <tr><td><code>PATCH</code></td><td>Update</td><td>Partially update existing data</td></tr>
+      <tr><td><code>DELETE</code></td><td>Delete</td><td>Remove data from the server</td></tr>
+    </table>
+
+    <div class="tut-nav-btns">
+      <a href="react.html" class="tut-nav-btn prev">« React</a>
+      <a href="git.html" class="tut-nav-btn">Git Tutorial »</a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a><a href="nodejs.html">Node.js</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

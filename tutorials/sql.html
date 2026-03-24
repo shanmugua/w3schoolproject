@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SQL Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 New: CSS Grid Tutorial added!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item">HTML</a><a href="css.html" class="nav-item">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a><a href="python.html" class="nav-item">Python</a>
+      <a href="sql.html" class="nav-item active">SQL</a>
+      <a href="../references.html" class="nav-item">References</a><a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="../editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JS</a><a href="sql.html">SQL</a><a href="../editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">SQL Tutorial</div>
+    <a href="#intro" class="sidebar-link active">SQL Introduction</a>
+    <a href="#syntax" class="sidebar-link">SQL Syntax</a>
+    <a href="#select" class="sidebar-link">SQL SELECT</a>
+    <a href="#where" class="sidebar-link">SQL WHERE</a>
+    <a href="#orderby" class="sidebar-link">SQL ORDER BY</a>
+    <a href="#insert" class="sidebar-link">SQL INSERT INTO</a>
+    <a href="#update" class="sidebar-link">SQL UPDATE</a>
+    <a href="#delete" class="sidebar-link">SQL DELETE</a>
+    <a href="#joins" class="sidebar-link">SQL JOINS</a>
+    <a href="#aggregate" class="sidebar-link">SQL Aggregate</a>
+    <a href="#create" class="sidebar-link">SQL CREATE TABLE</a>
+    <div class="sidebar-title">More Tutorials</div>
+    <a href="python.html" class="sidebar-link">Python</a>
+    <a href="javascript.html" class="sidebar-link">JavaScript</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1 id="intro">SQL Tutorial</h1>
+    <p>SQL is the standard language for relational database management systems. SQL statements are used to perform tasks such as update data on a database, or retrieve data from a database.</p>
+
+    <h2 id="select">SQL SELECT</h2>
+    <p>The SELECT statement is used to select data from a database. The data returned is stored in a result table, called the result-set.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">SQL</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-kw">SELECT</span> CustomerName, City
+<span class="hl-kw">FROM</span> Customers;</code></pre>
+      </div>
+      <div class="example-result">
+        <table style="font-size:13px;border-collapse:collapse;min-width:200px">
+          <tr><th style="background:#1a1a2e;color:#fff;padding:8px 14px;text-align:left">CustomerName</th><th style="background:#1a1a2e;color:#fff;padding:8px 14px;text-align:left">City</th></tr>
+          <tr><td style="padding:6px 14px;border-bottom:1px solid #eee">Alice Johnson</td><td style="padding:6px 14px;border-bottom:1px solid #eee">New York</td></tr>
+          <tr><td style="padding:6px 14px;border-bottom:1px solid #eee">Bob Smith</td><td style="padding:6px 14px;border-bottom:1px solid #eee">London</td></tr>
+          <tr><td style="padding:6px 14px">Carol White</td><td style="padding:6px 14px">Paris</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h2 id="where">SQL WHERE</h2>
+    <p>The WHERE clause is used to filter records. It is used to extract only those records that fulfill a specified condition.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">SQL</span></div>
+      <pre><code><span class="hl-kw">SELECT</span> * <span class="hl-kw">FROM</span> Customers
+<span class="hl-kw">WHERE</span> Country = <span class="hl-str">'Germany'</span>;</code></pre>
+    </div>
+
+    <h2 id="orderby">SQL ORDER BY</h2>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">SQL</span></div>
+      <pre><code><span class="hl-kw">SELECT</span> * <span class="hl-kw">FROM</span> Customers
+<span class="hl-kw">ORDER BY</span> Country <span class="hl-kw">ASC</span>, CustomerName <span class="hl-kw">DESC</span>;</code></pre>
+    </div>
+
+    <h2 id="insert">SQL INSERT INTO</h2>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">SQL</span></div>
+      <pre><code><span class="hl-kw">INSERT INTO</span> Customers (CustomerName, City, Country)
+<span class="hl-kw">VALUES</span> (<span class="hl-str">'Alice Johnson'</span>, <span class="hl-str">'New York'</span>, <span class="hl-str">'USA'</span>);</code></pre>
+    </div>
+
+    <h2 id="joins">SQL JOINS</h2>
+    <p>A JOIN clause is used to combine rows from two or more tables, based on a related column between them.</p>
+    <table>
+      <tr><th>JOIN Type</th><th>Description</th></tr>
+      <tr><td><code>INNER JOIN</code></td><td>Returns records that have matching values in both tables</td></tr>
+      <tr><td><code>LEFT JOIN</code></td><td>Returns all records from left table + matched from right</td></tr>
+      <tr><td><code>RIGHT JOIN</code></td><td>Returns all records from right table + matched from left</td></tr>
+      <tr><td><code>FULL JOIN</code></td><td>Returns all records when match in either table</td></tr>
+    </table>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">SQL</span></div>
+      <pre><code><span class="hl-kw">SELECT</span> Orders.OrderID, Customers.CustomerName
+<span class="hl-kw">FROM</span> Orders
+<span class="hl-kw">INNER JOIN</span> Customers
+<span class="hl-kw">ON</span> Orders.CustomerID = Customers.CustomerID;</code></pre>
+    </div>
+
+    <h2 id="aggregate">SQL Aggregate Functions</h2>
+    <table>
+      <tr><th>Function</th><th>Description</th></tr>
+      <tr><td><code>COUNT()</code></td><td>Returns the number of rows</td></tr>
+      <tr><td><code>SUM()</code></td><td>Returns the sum</td></tr>
+      <tr><td><code>AVG()</code></td><td>Returns the average value</td></tr>
+      <tr><td><code>MIN()</code></td><td>Returns the smallest value</td></tr>
+      <tr><td><code>MAX()</code></td><td>Returns the largest value</td></tr>
+    </table>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">SQL</span></div>
+      <pre><code><span class="hl-kw">SELECT</span> <span class="hl-fn">COUNT</span>(CustomerID), Country
+<span class="hl-kw">FROM</span> Customers
+<span class="hl-kw">GROUP BY</span> Country
+<span class="hl-kw">ORDER BY</span> <span class="hl-fn">COUNT</span>(CustomerID) <span class="hl-kw">DESC</span>;</code></pre>
+    </div>
+
+    <div class="tut-nav-btns">
+      <a href="python.html" class="tut-nav-btn prev">« Python Tutorial</a>
+      <a href="react.html" class="tut-nav-btn">React Tutorial »</a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a><a href="sql.html">SQL</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

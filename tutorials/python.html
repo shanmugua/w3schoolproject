@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Python Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 New: CSS Grid Tutorial added!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item">HTML</a>
+      <a href="css.html" class="nav-item">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a>
+      <a href="python.html" class="nav-item active">Python</a>
+      <a href="sql.html" class="nav-item">SQL</a>
+      <a href="../references.html" class="nav-item">References</a>
+      <a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="../editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JS</a><a href="python.html">Python</a><a href="../editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Python Tutorial</div>
+    <a href="#intro" class="sidebar-link active">Python Introduction</a>
+    <a href="#syntax" class="sidebar-link">Python Syntax</a>
+    <a href="#variables" class="sidebar-link">Python Variables</a>
+    <a href="#datatypes" class="sidebar-link">Python Data Types</a>
+    <a href="#strings" class="sidebar-link">Python Strings</a>
+    <a href="#lists" class="sidebar-link">Python Lists</a>
+    <a href="#tuples" class="sidebar-link">Python Tuples</a>
+    <a href="#dicts" class="sidebar-link">Python Dictionaries</a>
+    <a href="#conditions" class="sidebar-link">Python If...Else</a>
+    <a href="#loops" class="sidebar-link">Python Loops</a>
+    <a href="#functions" class="sidebar-link">Python Functions</a>
+    <a href="#classes" class="sidebar-link">Python Classes</a>
+    <a href="#modules" class="sidebar-link">Python Modules</a>
+    <div class="sidebar-title">More Tutorials</div>
+    <a href="javascript.html" class="sidebar-link">JavaScript</a>
+    <a href="sql.html" class="sidebar-link">SQL</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1 id="intro">Python Tutorial</h1>
+    <p>Python is a popular programming language. It was created by Guido van Rossum, and released in 1991. It is used for web development (server-side), software development, mathematics, and system scripting.</p>
+
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">Python</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-py-fn">print</span>(<span class="hl-py-str">"Hello, World!"</span>)</code></pre>
+      </div>
+      <div class="example-result"><code>Hello, World!</code></div>
+    </div>
+
+    <h2 id="syntax">Python Syntax</h2>
+    <p>Python was designed for readability, and has some similarities to the English language. Python uses indentation to indicate a code block, instead of curly braces.</p>
+    <div class="example-box">
+      <div class="example-label">Indentation Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">Python</span></div>
+        <pre><code><span class="hl-py-kw">if</span> <span class="hl-num">5</span> > <span class="hl-num">2</span>:
+    <span class="hl-py-fn">print</span>(<span class="hl-py-str">"Five is greater than two!"</span>)
+<span class="hl-py-kw">else</span>:
+    <span class="hl-py-fn">print</span>(<span class="hl-py-str">"Something went wrong"</span>)</code></pre>
+      </div>
+    </div>
+    <div class="warning-box"><strong>⚠ Warning:</strong> Python will throw an IndentationError if you skip indentation!</div>
+
+    <h2 id="variables">Python Variables</h2>
+    <p>Variables are containers for storing data values. Python has no command for declaring a variable — it is created the moment you first assign a value to it.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Python</span></div>
+      <pre><code>x = <span class="hl-num">5</span>
+y = <span class="hl-py-str">"Hello, World!"</span>
+z = <span class="hl-num">3.14</span>
+is_valid = <span class="hl-py-kw">True</span>
+<span class="hl-py-fn">print</span>(x, y, z, is_valid)</code></pre>
+    </div>
+
+    <h2 id="lists">Python Lists</h2>
+    <p>Lists are used to store multiple items in a single variable. Lists are one of 4 built-in data types in Python used to store collections of data.</p>
+    <div class="example-box">
+      <div class="example-label">List Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">Python</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code>fruits = [<span class="hl-py-str">"apple"</span>, <span class="hl-py-str">"banana"</span>, <span class="hl-py-str">"cherry"</span>]
+<span class="hl-py-fn">print</span>(fruits)
+<span class="hl-py-fn">print</span>(fruits[<span class="hl-num">0</span>])  <span class="hl-py-cm"># apple</span>
+
+<span class="hl-py-cm"># List methods</span>
+fruits.<span class="hl-py-fn">append</span>(<span class="hl-py-str">"mango"</span>)
+fruits.<span class="hl-py-fn">remove</span>(<span class="hl-py-str">"banana"</span>)
+fruits.<span class="hl-py-fn">sort</span>()
+<span class="hl-py-fn">print</span>(<span class="hl-py-fn">len</span>(fruits))  <span class="hl-py-cm"># 3</span></code></pre>
+      </div>
+    </div>
+
+    <h2 id="functions">Python Functions</h2>
+    <p>A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Python</span></div>
+      <pre><code><span class="hl-py-kw">def</span> <span class="hl-py-fn">greet</span>(name, greeting=<span class="hl-py-str">"Hello"</span>):
+    <span class="hl-py-kw">return</span> <span class="hl-py-str">f"{greeting}, {name}!"</span>
+
+<span class="hl-py-fn">print</span>(<span class="hl-py-fn">greet</span>(<span class="hl-py-str">"Alice"</span>))          <span class="hl-py-cm"># Hello, Alice!</span>
+<span class="hl-py-fn">print</span>(<span class="hl-py-fn">greet</span>(<span class="hl-py-str">"Bob"</span>, <span class="hl-py-str">"Hi"</span>))    <span class="hl-py-cm"># Hi, Bob!</span></code></pre>
+    </div>
+
+    <h2 id="classes">Python Classes</h2>
+    <p>Python is an object-oriented programming language. Almost everything in Python is an object, with its properties and methods.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Python</span></div>
+      <pre><code><span class="hl-py-kw">class</span> <span class="hl-py-fn">Person</span>:
+    <span class="hl-py-kw">def</span> <span class="hl-py-fn">__init__</span>(<span class="hl-py-kw">self</span>, name, age):
+        <span class="hl-py-kw">self</span>.name = name
+        <span class="hl-py-kw">self</span>.age = age
+
+    <span class="hl-py-kw">def</span> <span class="hl-py-fn">greet</span>(<span class="hl-py-kw">self</span>):
+        <span class="hl-py-kw">return</span> <span class="hl-py-str">f"Hi, I'm {self.name}, {self.age} years old."</span>
+
+p = <span class="hl-py-fn">Person</span>(<span class="hl-py-str">"Alice"</span>, <span class="hl-num">30</span>)
+<span class="hl-py-fn">print</span>(p.<span class="hl-py-fn">greet</span>())  <span class="hl-py-cm"># Hi, I'm Alice, 30 years old.</span></code></pre>
+    </div>
+
+    <div class="tut-nav-btns">
+      <a href="javascript.html" class="tut-nav-btn prev">« JavaScript Tutorial</a>
+      <a href="sql.html" class="tut-nav-btn">SQL Tutorial »</a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a><a href="python.html">Python</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

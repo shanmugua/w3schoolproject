@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HTML Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+
+<div class="topbar">
+  <span>🔥 New: CSS Grid Tutorial added!</span>
+  <a href="css.html">Learn CSS →</a>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item active">HTML</a>
+      <a href="css.html" class="nav-item">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a>
+      <a href="python.html" class="nav-item">Python</a>
+      <a href="sql.html" class="nav-item">SQL</a>
+      <a href="../references.html" class="nav-item">References</a>
+      <a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right">
+      <a href="../editor.html" class="btn-tryit">Try it Yourself »</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="html.html">HTML</a>
+    <a href="css.html">CSS</a>
+    <a href="javascript.html">JavaScript</a>
+    <a href="../editor.html">Try Editor</a>
+  </div>
+</nav>
+
+<div class="page-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">HTML Tutorial</div>
+    <a href="#intro" class="sidebar-link active">HTML Introduction</a>
+    <a href="#editors" class="sidebar-link">HTML Editors</a>
+    <a href="#elements" class="sidebar-link">HTML Elements</a>
+    <a href="#attributes" class="sidebar-link">HTML Attributes</a>
+    <a href="#headings" class="sidebar-link">HTML Headings</a>
+    <a href="#paragraphs" class="sidebar-link">HTML Paragraphs</a>
+    <a href="#styles" class="sidebar-link">HTML Styles</a>
+    <a href="#links" class="sidebar-link">HTML Links</a>
+    <a href="#images" class="sidebar-link">HTML Images</a>
+    <a href="#tables" class="sidebar-link">HTML Tables</a>
+    <a href="#lists" class="sidebar-link">HTML Lists</a>
+    <a href="#forms" class="sidebar-link">HTML Forms</a>
+    <a href="#semantic" class="sidebar-link">HTML Semantic</a>
+
+    <div class="sidebar-title">HTML Reference</div>
+    <a href="../references.html#html-tags" class="sidebar-link">HTML Tag Reference</a>
+    <a href="../references.html#html-attributes" class="sidebar-link">HTML Attributes</a>
+    <a href="../references.html#html-events" class="sidebar-link">HTML Events</a>
+
+    <div class="sidebar-title">More Tutorials</div>
+    <a href="css.html" class="sidebar-link">CSS Tutorial</a>
+    <a href="javascript.html" class="sidebar-link">JavaScript Tutorial</a>
+    <a href="python.html" class="sidebar-link">Python Tutorial</a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="tut-content">
+
+    <h1 id="intro">HTML Tutorial</h1>
+    <p>HTML is the standard markup language for creating Web pages.</p>
+
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header">
+          <span class="code-box-label">HTML</span>
+          <div class="code-box-actions">
+            <button class="code-btn" data-copy="#ex1">Copy</button>
+            <a href="../editor.html?code=html-intro" class="code-btn">Try it »</a>
+          </div>
+        </div>
+        <pre id="ex1"><code><span class="hl-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html&gt;</span>
+<span class="hl-tag">&lt;head&gt;</span>
+<span class="hl-tag">&lt;title&gt;</span>Page Title<span class="hl-tag">&lt;/title&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span>
+<span class="hl-tag">&lt;body&gt;</span>
+
+<span class="hl-tag">&lt;h1&gt;</span>My First Heading<span class="hl-tag">&lt;/h1&gt;</span>
+<span class="hl-tag">&lt;p&gt;</span>My first paragraph.<span class="hl-tag">&lt;/p&gt;</span>
+
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></code></pre>
+      </div>
+      <div class="example-result">
+        <div class="example-result-label">Result:</div>
+        <h1 style="font-size:22px;margin:8px 0 4px">My First Heading</h1>
+        <p style="font-size:15px">My first paragraph.</p>
+      </div>
+    </div>
+
+    <h2>What is HTML?</h2>
+    <ul>
+      <li>HTML stands for <strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</li>
+      <li>HTML is the standard markup language for creating Web pages</li>
+      <li>HTML describes the structure of a Web page</li>
+      <li>HTML consists of a series of <strong>elements</strong></li>
+      <li>HTML elements tell the browser how to display the content</li>
+      <li>HTML elements label pieces of content such as "this is a heading", "this is a paragraph", etc.</li>
+    </ul>
+
+    <h2 id="elements">HTML Elements</h2>
+    <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Syntax</span></div>
+      <pre><code><span class="hl-tag">&lt;tagname&gt;</span> Content goes here... <span class="hl-tag">&lt;/tagname&gt;</span></code></pre>
+    </div>
+    <p>The HTML element is everything from the start tag to the end tag:</p>
+    <table>
+      <tr><th>Start tag</th><th>Element content</th><th>End tag</th></tr>
+      <tr><td><code>&lt;h1&gt;</code></td><td>My First Heading</td><td><code>&lt;/h1&gt;</code></td></tr>
+      <tr><td><code>&lt;p&gt;</code></td><td>My first paragraph.</td><td><code>&lt;/p&gt;</code></td></tr>
+      <tr><td><code>&lt;br&gt;</code></td><td><em>none</em></td><td><em>none</em></td></tr>
+    </table>
+
+    <div class="note-box">
+      <strong>Note:</strong> Some HTML elements have no content (like the <code>&lt;br&gt;</code> element). These elements are called <em>empty elements</em>. Empty elements do not have an end tag!
+    </div>
+
+    <h2 id="attributes">HTML Attributes</h2>
+    <p>HTML attributes provide additional information about HTML elements.</p>
+    <ul>
+      <li>All HTML elements can have <strong>attributes</strong></li>
+      <li>Attributes provide <strong>additional information</strong> about elements</li>
+      <li>Attributes are always specified in the <strong>start tag</strong></li>
+      <li>Attributes usually come in name/value pairs like: <code>name="value"</code></li>
+    </ul>
+
+    <div class="example-box">
+      <div class="example-label">Example — The href Attribute</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><button class="code-btn" data-copy="#ex2">Copy</button><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre id="ex2"><code><span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://www.example.com"</span><span class="hl-tag">&gt;</span>Visit Example<span class="hl-tag">&lt;/a&gt;</span></code></pre>
+      </div>
+    </div>
+
+    <h2 id="headings">HTML Headings</h2>
+    <p>HTML headings are defined with the <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags.</p>
+    <p><code>&lt;h1&gt;</code> defines the most important heading. <code>&lt;h6&gt;</code> defines the least important heading.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;h1&gt;</span>Heading 1<span class="hl-tag">&lt;/h1&gt;</span>
+<span class="hl-tag">&lt;h2&gt;</span>Heading 2<span class="hl-tag">&lt;/h2&gt;</span>
+<span class="hl-tag">&lt;h3&gt;</span>Heading 3<span class="hl-tag">&lt;/h3&gt;</span>
+<span class="hl-tag">&lt;h4&gt;</span>Heading 4<span class="hl-tag">&lt;/h4&gt;</span>
+<span class="hl-tag">&lt;h5&gt;</span>Heading 5<span class="hl-tag">&lt;/h5&gt;</span>
+<span class="hl-tag">&lt;h6&gt;</span>Heading 6<span class="hl-tag">&lt;/h6&gt;</span></code></pre>
+      </div>
+      <div class="example-result">
+        <h1 style="font-size:28px">Heading 1</h1>
+        <h2 style="font-size:22px">Heading 2</h2>
+        <h3 style="font-size:18px">Heading 3</h3>
+      </div>
+    </div>
+
+    <h2 id="styles">HTML Styles</h2>
+    <p>The HTML <code>style</code> attribute is used to add styles to an element, such as color, font, size, and more.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;p</span> <span class="hl-attr">style</span>=<span class="hl-val">"color:red;"</span><span class="hl-tag">&gt;</span>I am red<span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-tag">&lt;p</span> <span class="hl-attr">style</span>=<span class="hl-val">"color:blue;font-size:20px;"</span><span class="hl-tag">&gt;</span>I am blue<span class="hl-tag">&lt;/p&gt;</span></code></pre>
+      </div>
+      <div class="example-result">
+        <p style="color:red">I am red</p>
+        <p style="color:blue;font-size:18px">I am blue</p>
+      </div>
+    </div>
+
+    <h2 id="links">HTML Links</h2>
+    <p>HTML links are hyperlinks. You can click on a link and jump to another document.</p>
+    <p>The HTML <code>&lt;a&gt;</code> tag defines a hyperlink. It has the following syntax:</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Syntax</span></div>
+      <pre><code><span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"url"</span><span class="hl-tag">&gt;</span>link text<span class="hl-tag">&lt;/a&gt;</span></code></pre>
+    </div>
+
+    <h2 id="images">HTML Images</h2>
+    <p>Images can improve the design and the appearance of a web page.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"photo.jpg"</span> <span class="hl-attr">alt</span>=<span class="hl-val">"My Photo"</span> <span class="hl-attr">width</span>=<span class="hl-val">"300"</span><span class="hl-tag">&gt;</span></code></pre>
+      </div>
+    </div>
+
+    <h2 id="tables">HTML Tables</h2>
+    <p>A table in HTML consists of table cells inside rows and columns.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;table&gt;</span>
+  <span class="hl-tag">&lt;tr&gt;</span>
+    <span class="hl-tag">&lt;th&gt;</span>Company<span class="hl-tag">&lt;/th&gt;</span>
+    <span class="hl-tag">&lt;th&gt;</span>Contact<span class="hl-tag">&lt;/th&gt;</span>
+  <span class="hl-tag">&lt;/tr&gt;</span>
+  <span class="hl-tag">&lt;tr&gt;</span>
+    <span class="hl-tag">&lt;td&gt;</span>Google<span class="hl-tag">&lt;/td&gt;</span>
+    <span class="hl-tag">&lt;td&gt;</span>Maria Anders<span class="hl-tag">&lt;/td&gt;</span>
+  <span class="hl-tag">&lt;/tr&gt;</span>
+<span class="hl-tag">&lt;/table&gt;</span></code></pre>
+      </div>
+      <div class="example-result">
+        <table style="border-collapse:collapse;font-size:14px;min-width:250px">
+          <tr><th style="background:#1a1a2e;color:#fff;padding:8px 14px;text-align:left">Company</th><th style="background:#1a1a2e;color:#fff;padding:8px 14px;text-align:left">Contact</th></tr>
+          <tr><td style="padding:8px 14px;border-bottom:1px solid #eee">Google</td><td style="padding:8px 14px;border-bottom:1px solid #eee">Maria Anders</td></tr>
+          <tr><td style="padding:8px 14px">Apple</td><td style="padding:8px 14px">Franz Chang</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h2 id="lists">HTML Lists</h2>
+    <p>HTML lists allow web developers to group a set of related items in lists.</p>
+    <div class="example-box">
+      <div class="example-label">Unordered List</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;ul&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Coffee<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Tea<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Milk<span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-tag">&lt;/ul&gt;</span></code></pre>
+      </div>
+      <div class="example-result">
+        <ul style="padding-left:20px;font-size:15px"><li>Coffee</li><li>Tea</li><li>Milk</li></ul>
+      </div>
+    </div>
+
+    <h2 id="forms">HTML Forms</h2>
+    <p>An HTML form is used to collect user input. The user input is most often sent to a server for processing.</p>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <div class="code-box">
+        <div class="code-box-header"><span class="code-box-label">HTML</span><div class="code-box-actions"><a href="../editor.html" class="code-btn">Try it »</a></div></div>
+        <pre><code><span class="hl-tag">&lt;form</span> <span class="hl-attr">action</span>=<span class="hl-val">"/submit"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;label&gt;</span>Name:<span class="hl-tag">&lt;/label&gt;</span>
+  <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">name</span>=<span class="hl-val">"name"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;br&gt;&lt;br&gt;</span>
+  <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"submit"</span> <span class="hl-attr">value</span>=<span class="hl-val">"Submit"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;/form&gt;</span></code></pre>
+      </div>
+    </div>
+
+    <h2 id="semantic">HTML Semantic Elements</h2>
+    <p>Semantic elements = elements with a meaning. A semantic element clearly describes its meaning to both the browser and the developer.</p>
+    <p>Examples of <strong>non-semantic</strong> elements: <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> — tells nothing about its content.</p>
+    <p>Examples of <strong>semantic</strong> elements: <code>&lt;form&gt;</code>, <code>&lt;table&gt;</code>, and <code>&lt;article&gt;</code> — clearly defines its content.</p>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td><code>&lt;article&gt;</code></td><td>Defines independent, self-contained content</td></tr>
+      <tr><td><code>&lt;aside&gt;</code></td><td>Defines content aside from the page content</td></tr>
+      <tr><td><code>&lt;footer&gt;</code></td><td>Defines a footer for a document or section</td></tr>
+      <tr><td><code>&lt;header&gt;</code></td><td>Specifies a header for a document or section</td></tr>
+      <tr><td><code>&lt;main&gt;</code></td><td>Specifies the main content of a document</td></tr>
+      <tr><td><code>&lt;nav&gt;</code></td><td>Defines a set of navigation links</td></tr>
+      <tr><td><code>&lt;section&gt;</code></td><td>Defines a section in a document</td></tr>
+    </table>
+
+    <div class="tip-box">
+      <strong>✅ Tip:</strong> Use semantic HTML to improve accessibility, SEO, and code readability!
+    </div>
+
+    <div class="tut-nav-btns">
+      <a href="../index.html" class="tut-nav-btn prev">« Home</a>
+      <a href="css.html" class="tut-nav-btn">CSS Tutorial »</a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-w">W3</span><span class="logo-learn">Learn</span>
+        <p>The world's most popular web development learning platform.</p>
+      </div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a><a href="python.html">Python</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Code Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Built for learning. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

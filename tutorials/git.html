@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Git Tutorial — W3Learn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔀</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body>
+<div class="topbar"><span>🔥 Learn Git — the #1 version control system!</span></div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-w">W3</span><span class="logo-learn">Learn</span></a>
+    <div class="nav-links">
+      <a href="html.html" class="nav-item">HTML</a><a href="css.html" class="nav-item">CSS</a>
+      <a href="javascript.html" class="nav-item">JavaScript</a><a href="python.html" class="nav-item">Python</a>
+      <a href="sql.html" class="nav-item">SQL</a>
+      <a href="../references.html" class="nav-item">References</a><a href="../exercises.html" class="nav-item">Exercises</a>
+    </div>
+    <div class="nav-right"><a href="../editor.html" class="btn-tryit">Try it Yourself »</a></div>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JS</a><a href="../editor.html">Editor</a></div>
+</nav>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Git Tutorial</div>
+    <a href="#intro" class="sidebar-link active">Git Introduction</a>
+    <a href="#install" class="sidebar-link">Git Install</a>
+    <a href="#config" class="sidebar-link">Git Config</a>
+    <a href="#init" class="sidebar-link">Git Init</a>
+    <a href="#staging" class="sidebar-link">Git Staging</a>
+    <a href="#commit" class="sidebar-link">Git Commit</a>
+    <a href="#branch" class="sidebar-link">Git Branch</a>
+    <a href="#merge" class="sidebar-link">Git Merge</a>
+    <a href="#remote" class="sidebar-link">Git Remote</a>
+    <a href="#github" class="sidebar-link">GitHub</a>
+    <a href="#cheatsheet" class="sidebar-link">Cheat Sheet</a>
+    <div class="sidebar-title">Related</div>
+    <a href="nodejs.html" class="sidebar-link">Node.js</a>
+    <a href="javascript.html" class="sidebar-link">JavaScript</a>
+  </aside>
+
+  <main class="tut-content">
+    <h1 id="intro">Git Tutorial</h1>
+    <p>Git is a version control system. Git helps you keep track of code changes. Git is used to collaborate on code.</p>
+
+    <div class="tip-box">
+      <strong>✅ Why use Git?</strong> Track every change, collaborate with teams, revert mistakes, branch for features, and deploy with confidence.
+    </div>
+
+    <h2 id="config">Git Config</h2>
+    <p>Before using Git, you should configure your identity. This is important because every Git commit uses this information.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code>git config --global user.name <span class="hl-str">"Your Name"</span>
+git config --global user.email <span class="hl-str">"you@example.com"</span></code></pre>
+    </div>
+
+    <h2 id="init">Git Init & Clone</h2>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># Start a new repository</span>
+git init
+
+<span class="hl-cm"># Clone an existing repository</span>
+git clone https://github.com/user/repo.git</code></pre>
+    </div>
+
+    <h2 id="staging">Git Add — Staging Changes</h2>
+    <p>The staging area is like a preparation area where you gather changes before making a commit.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># Add a specific file</span>
+git add index.html
+
+<span class="hl-cm"># Add all changed files</span>
+git add .
+
+<span class="hl-cm"># Check status</span>
+git status</code></pre>
+    </div>
+
+    <h2 id="commit">Git Commit</h2>
+    <p>A commit is a snapshot of your project at a specific point in time. Always write a meaningful commit message.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># Commit staged changes</span>
+git commit -m <span class="hl-str">"Add navigation menu"</span>
+
+<span class="hl-cm"># Add all + commit in one step</span>
+git commit -am <span class="hl-str">"Fix button styling"</span>
+
+<span class="hl-cm"># View commit history</span>
+git log --oneline</code></pre>
+    </div>
+
+    <h2 id="branch">Git Branch</h2>
+    <p>Branches allow you to work on different features or fixes without affecting the main codebase.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># List all branches</span>
+git branch
+
+<span class="hl-cm"># Create a new branch</span>
+git branch feature/login
+
+<span class="hl-cm"># Switch to branch</span>
+git checkout feature/login
+
+<span class="hl-cm"># Create AND switch (modern shorthand)</span>
+git checkout -b feature/signup
+
+<span class="hl-cm"># Delete a branch</span>
+git branch -d feature/login</code></pre>
+    </div>
+
+    <h2 id="merge">Git Merge</h2>
+    <p>Merging is Git's way of putting a forked history back together again.</p>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># Switch to target branch first</span>
+git checkout main
+
+<span class="hl-cm"># Merge feature branch into main</span>
+git merge feature/login
+
+<span class="hl-cm"># Abort a conflicted merge</span>
+git merge --abort</code></pre>
+    </div>
+
+    <h2 id="remote">Git Remote & Push/Pull</h2>
+    <div class="code-box">
+      <div class="code-box-header"><span class="code-box-label">Terminal</span></div>
+      <pre><code><span class="hl-cm"># Add remote</span>
+git remote add origin https://github.com/user/repo.git
+
+<span class="hl-cm"># Push to remote</span>
+git push origin main
+
+<span class="hl-cm"># Pull latest changes</span>
+git pull origin main
+
+<span class="hl-cm"># Fetch without merging</span>
+git fetch origin</code></pre>
+    </div>
+
+    <h2 id="cheatsheet">Git Cheat Sheet</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td><code>git init</code></td><td>Initialize a new Git repo</td></tr>
+      <tr><td><code>git clone &lt;url&gt;</code></td><td>Clone a remote repository</td></tr>
+      <tr><td><code>git status</code></td><td>Show working tree status</td></tr>
+      <tr><td><code>git add .</code></td><td>Stage all changes</td></tr>
+      <tr><td><code>git commit -m "msg"</code></td><td>Commit with message</td></tr>
+      <tr><td><code>git push</code></td><td>Push to remote</td></tr>
+      <tr><td><code>git pull</code></td><td>Pull from remote</td></tr>
+      <tr><td><code>git branch</code></td><td>List branches</td></tr>
+      <tr><td><code>git checkout -b &lt;branch&gt;</code></td><td>Create and switch branch</td></tr>
+      <tr><td><code>git merge &lt;branch&gt;</code></td><td>Merge branch into current</td></tr>
+      <tr><td><code>git log --oneline</code></td><td>Compact commit history</td></tr>
+      <tr><td><code>git stash</code></td><td>Temporarily save changes</td></tr>
+      <tr><td><code>git stash pop</code></td><td>Restore stashed changes</td></tr>
+      <tr><td><code>git reset --hard HEAD</code></td><td>Discard all local changes</td></tr>
+      <tr><td><code>git diff</code></td><td>Show unstaged changes</td></tr>
+    </table>
+
+    <div class="tut-nav-btns">
+      <a href="nodejs.html" class="tut-nav-btn prev">« Node.js</a>
+      <a href="../exercises.html" class="tut-nav-btn">Practice Exercises »</a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo-w">W3</span><span class="logo-learn">Learn</span><p>The world's most popular web dev platform.</p></div>
+      <div class="footer-col"><h5>Tutorials</h5><a href="html.html">HTML</a><a href="css.html">CSS</a><a href="javascript.html">JavaScript</a><a href="git.html">Git</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="../references.html">References</a><a href="../exercises.html">Exercises</a><a href="../editor.html">Editor</a></div>
+      <div class="footer-col"><h5>More</h5><a href="../quiz.html">Quizzes</a><a href="../about.html">About</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 W3Learn. Inspired by W3Schools.</p></div>
+  </div>
+</footer>
+<script src="../scripts/main.js"></script>
+</body>
+</html>
